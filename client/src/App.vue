@@ -1,12 +1,13 @@
 <template>
     <main>
-        <article v-on:click="backHome">
+        <header v-on:click="backHome">
             <header-main></header-main>
-        </article>
+        </header>
         
         <section>
             <button v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
+            
             <game v-if="gameInProgress"></game>
         </section>
     </main>
