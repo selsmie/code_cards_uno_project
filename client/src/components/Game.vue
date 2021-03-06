@@ -23,10 +23,36 @@ export default {
     name: 'game',
     data() {
         return {
-            playerList: [],
+            playerList: [
+                {
+                    name: "Simon",
+                    hand: [],
+                    played: 0,
+                    wins: 0
+                },
+                {
+                    name: "Alex",
+                    hand: [],
+                    played: 0,
+                    wins: 0
+                },
+                {
+                    name: "Jenny",
+                    hand: [],
+                    played: 0,
+                    wins: 0
+                },
+                {
+                    name: "Mark",
+                    hand: [],
+                    played: 0,
+                    wins: 0
+                }
+            ],
             remainingCardDeck: [],
             currentPlayer: null,
             selectedCard: null,
+            currentTopCard: null,
         }
     },
     props: ['playersList', 'cardList'],
@@ -46,15 +72,20 @@ export default {
             } else {
                 this.currentPlayer = this.playerList[0]
             }
-        }
+        },
+        
 
     },
-    // mounted() {
-    //     eventBus.$on('card-list', (cardList, playerList) => {
-    //         this.remainingCardDeck = cardList,
-    //         this.playerList = playerList
-    //     })
-    // }
+    mounted() {
+        eventBus.$on('card-list', (cardList, playerList) => {
+            this.remainingCardDeck = cardList,
+            this.playerList = playerList
+        }),
+
+        eventBus.$on('top-card', (card) => {
+            this.currentTopCard = card
+        })
+    }
 
 }
 </script>
