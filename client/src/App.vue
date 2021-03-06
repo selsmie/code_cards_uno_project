@@ -1,27 +1,46 @@
 <template>
-<div id=main-body>
-    <header-component></header-component>
-    <h1>Hello</h1>
-</div>
+    <main id="main">
+        <header>
+            <header-main v-on:click="backHome"></header-main>
+        </header>
+        
+        <!-- <section>
+            <button v-if="gameInProgress === null" v-on:click='setup'>Play</button>
+            <player-form v-if="gameInProgress === false"></player-form>
+            
+            <game v-if="gameInProgress"></game>
+        </section> -->
+    </main>
 </template>
 
 <script>
-import GameService from './services/GameService'
-import HeaderComponent from './components/Header.vue'
+// import PlayerForm from './components/PlayerForm.vue'
+// import Game from './components/Game.vue'
+import Header from './components/Header.vue'
+import { eventBus } from './main'
 
 export default {
     name: 'App',
-    components: {
-        "header-component": HeaderComponent,
-    },
     data() {
         return {
-            cards: []
+            gameInProgress: null
+        }
+    },
+    components: {
+        // "player-form": PlayerForm,
+        // "game": Game,
+        "header-main": Header,
+    },
+    methods: {
+        backHome: function() {
+            this.gameInProgress = null
+        },
+        setup: function() {
+            this.gameInProgress = false
         }
     },
     mounted() {
-        GameService.getCards()
-        .then(cards => this.cards = cards)
+        eventBus.$on('start-game', () => this.gameInProgress = true)
     }
 
 }
@@ -32,10 +51,12 @@ body {
     margin: 0;
 }
 
-#main-body {
+#main {
     display: grid;
     grid-template-rows: 20vh 80vh;
     grid-template-columns: 100vw;
     /* background-color: rgb(16, 18, 145); */
 }
+
+
 </style>
