@@ -1,16 +1,16 @@
 <template>
   <section>
       <div class='player-card-counts'>
-
+   
       </div>
       <div class='card-decks'>
           <!-- <card-deck></card-deck> -->
       </div>
       <div class='current-player-hand'>
-          <!-- <player-hand></player-hand> -->
+          <p>{{ currentPlayer.name}}'s turn</p>
+          <player-hand :hand="currentPlayer.hand"></player-hand>
       </div>
       <div class='action-buttons'>
-          <button v-on:click="startPlayer">Start</button>
           <button v-on:click="nextTurn">End Turn</button>
       </div>
   </section>
@@ -19,46 +19,21 @@
 <script>
 import { eventBus } from '../main.js'
 
+import PlayerHand from './PlayerHand.vue'
+
 export default {
     name: 'game',
     data() {
         return {
-            playerList: [
-                {
-                    name: "Simon",
-                    hand: [],
-                    played: 0,
-                    wins: 0
-                },
-                {
-                    name: "Alex",
-                    hand: [],
-                    played: 0,
-                    wins: 0
-                },
-                {
-                    name: "Jenny",
-                    hand: [],
-                    played: 0,
-                    wins: 0
-                },
-                {
-                    name: "Mark",
-                    hand: [],
-                    played: 0,
-                    wins: 0
-                }
-            ],
+            playerList: [],
             remainingCardDeck: [],
             currentPlayer: null,
             selectedCard: null,
             currentTopCard: null,
         }
     },
-    props: ['playersList', 'cardList'],
-    componenets: {
-        // "player-hand": PlayerHand,
-        // "card-deck": CardDeck
+    components: {
+        "player-hand": PlayerHand,
     },
     methods: {
         startPlayer: function() {
@@ -77,14 +52,20 @@ export default {
 
     },
     mounted() {
-        eventBus.$on('card-list', (cardList, playerList) => {
-            this.remainingCardDeck = cardList,
+        eventBus.$on('card-list', (cardList) => {
+            this.remainingCardDeck = cardList
+        })
+
+        eventBus.$on('player-list', (playerList) => {
             this.playerList = playerList
-        }),
+            this.startPlayer()
+        })
 
         eventBus.$on('top-card', (card) => {
             this.currentTopCard = card
         })
+
+        
     }
 
 }
