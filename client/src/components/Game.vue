@@ -1,19 +1,19 @@
 <template>
-  <section>
-      <div class='player-card-counts'>
-   
-      </div>
-      <div class='card-decks'>
-          <!-- <card-deck></card-deck> -->
-      </div>
-      <div class='current-player-hand'>
-          <p>{{ currentPlayer.name}}'s turn</p>
-          <player-hand :hand="currentPlayer.hand"></player-hand>
-      </div>
-      <div class='action-buttons'>
-          <button v-on:click="nextTurn">End Turn</button>
-      </div>
-  </section>
+    <section v-if='currentPlayer'>
+        <div class='player-card-counts'>
+            <!-- <button v-on:click='sortCardColors'>Test</button> -->
+        </div>
+        <div class='card-decks'>
+            <!-- <card-deck></card-deck> -->
+        </div>
+        <div class='current-player-hand' >
+            <p>{{ currentPlayer.name}}'s turn</p>
+            <player-hand :hand="currentPlayer.hand"></player-hand>
+        </div>
+        <div class='action-buttons'>
+            <button v-on:click="nextTurn">End Turn</button>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -47,9 +47,13 @@ export default {
             } else {
                 this.currentPlayer = this.playerList[0]
             }
+            this.sortCardColors()
         },
-        
-
+        sortCardColors: function() {
+                this.currentPlayer.hand.sort(function (a, b) {
+                    return a.color.length - b.color.length
+                })
+        },
     },
     mounted() {
         eventBus.$on('card-list', (cardList) => {
@@ -59,13 +63,15 @@ export default {
         eventBus.$on('player-list', (playerList) => {
             this.playerList = playerList
             this.startPlayer()
+            this.sortCardColors()
+
         })
 
         eventBus.$on('top-card', (card) => {
             this.currentTopCard = card
-        })
-
-        
+        })  
+    },
+    computed: {
     }
 
 }
