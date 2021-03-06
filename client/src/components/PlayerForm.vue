@@ -1,12 +1,12 @@
 <template>
 <div>
-    <form @submit="addPlayer">
+    <form @submit="addPlayer" v-if="players.length < 10">
         <label for="name">Player name: </label>
         <input type="text" id="name" name="name" v-model="name" required >
         <input type="submit" value="Add" id="save"/>
     </form>
     <br>
-    <button @click="shuffle" type="button" class="new-game-btn">Start new game!</button>
+    <button @click="newGame" type="button" class="new-game-btn">Start new game!</button>
 
     <!-- <section>
         <added-players :players="playerList"/>
@@ -52,11 +52,15 @@ export default {
             }
         },
 
+        // deal() {
+        //     for (player of this.players) {
+        //         let hand = this.cards.
+        //     }
+        // },
+
         newGame(evt) {
             evt.preventDefault()
-            // this.shuffle()
-            // console.log(this.cards);
-
+            this.shuffle()
 
 
             // eventBus.$emit('new-game', this.cards, this.players)
