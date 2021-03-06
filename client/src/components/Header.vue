@@ -14,24 +14,23 @@
 
 <script>
 import SidePanel from "@/components/SidePanel.vue"
+import { store, mutations } from "@/store.js"
 
 export default {
   name: "header-component",
   components: {
     "side-panel": SidePanel,
   },
-  data() {
-      return {
-        isBurgerActive: false
+  computed: {
+      isBurgerActive() {
+            return store.isNavOpen
       }
   },
-  props: [],
   methods: {
-    showMenu() {
-      this.isBurgerActive = !this.isBurgerActive
+        showMenu() {
+            mutations.toggleNav()
     },
-  }
-
+  },
 }
 </script>
 

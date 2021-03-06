@@ -53,9 +53,8 @@ body {
 
 #main {
     display: grid;
-    grid-template-rows: 20vh 80vh;
+    grid-template-rows: 13vh 87vh;
     grid-template-columns: 100vw;
-    /* background-color: rgb(16, 18, 145); */
 }
 
 

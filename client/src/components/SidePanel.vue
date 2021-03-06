@@ -1,7 +1,7 @@
 <template>
     <div class="side-panel">
         <div class="side-panel-backdrop" v-on:click="closeSidePanel" v-if="isSidePanelOpen"></div>
-        <transition name="slideRight">
+        <transition name="slide">
             <div class="side-panel-menu" v-if="isSidePanelOpen">
                 <ul class="menu-list">
                     <li><a class="menu-item" href="">How To Play</a></li>
@@ -13,16 +13,16 @@
 </template>
 
 <script>
+import { store, mutations } from "@/store.js"
+
 export default {
     name: "side-panel",
-    data() {
-        return {
-            isSidePanelOpen: true
-        }
-    },
     methods: {
-        closeSidePanel() {
-            this.isSidePanelOpen = false
+        closeSidePanel: mutations.toggleNav
+    },
+    computed: {
+        isSidePanelOpen() {
+            return store.isNavOpen
         }
     }
 
@@ -41,8 +41,8 @@ export default {
     transition: all 150ms ease-in 0s
 }
 
-.side-panel-backdroup {
-    background-color: rgba(0, 0, 0, 0.5);
+.side-panel-backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
     width: 100vw;
     height: 100vh;
     position: fixed;
