@@ -1,18 +1,34 @@
 <template>
-  <div id="header">
-    <button id="menu-button" v-on:click="showMenu">Click Me</button>
-    <p id="logo">Uno Logo</p>
-    <p id="player-playing">Current Player: Player 3</p>
-  </div>
+    <div>
+        <div id="header">
+            <button id="menu-button" v-on:click.prevent="showMenu">Click Me</button>
+            <p id="logo">Uno Logo</p>
+            <p id="player-playing">Current Player: Player 3</p>
+        </div>
+
+        <div>
+            <side-panel></side-panel>
+        </div>
+    </div>
 </template>
 
 <script>
+import SidePanel from "@/components/SidePanel.vue"
+
 export default {
   name: "header-component",
+  components: {
+    "side-panel": SidePanel,
+  },
+  data() {
+      return {
+        isBurgerActive: false
+      }
+  },
   props: [],
   methods: {
     showMenu() {
-      console.log("menu-button works!")
+      this.isBurgerActive = !this.isBurgerActive
     },
   }
 
