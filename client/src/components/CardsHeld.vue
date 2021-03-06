@@ -10,19 +10,34 @@ export default {
 </script>
 
 <style>
+li{
+    list-style: none;
+    height: 50px;
+    padding: 5px 13px;
+    margin: 2px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+    border-radius: 8px;
+}
+
 .red {
-    color: red;
+    background-color: red;
 }
 
 .blue {
-    color: blue;
+    background-color: blue;
 }
 
 .green {
-    color: green;
+    background-color: green;
 }
 
 .yellow {
-    color: yellow;
+    background-color: yellow;
+    color: black;
 }
 </style>

@@ -20,5 +20,12 @@ export default {
 </script>
 
 <style>
+ul{
+    display: flex;
+    overflow: scroll;
+}
 
+ul::-webkit-scrollbar {
+  display: none;
+}
 </style>
