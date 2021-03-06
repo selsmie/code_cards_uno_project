@@ -1,23 +1,17 @@
 <template>
 <div>
     <h1>Hello</h1>
+    <player-form/>
 </div>
 </template>
 
 <script>
-import GameService from './services/GameService'
+
+import PlayerForm from '@/components/PlayerForm';
 
 export default {
-    name: 'App',
-    data() {
-        return {
-            cards: []
-        }
-    },
-    mounted() {
-        GameService.getCards()
-        .then(cards => this.cards = cards)
-    }
+  components: { PlayerForm },
+    name: 'App'
 
 }
 </script>
