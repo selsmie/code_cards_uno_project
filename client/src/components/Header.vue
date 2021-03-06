@@ -1,9 +1,8 @@
 <template>
     <div>
         <div id="header">
-            <button id="menu-button" v-on:click.prevent="showMenu">Click Me</button>
+            <button id="menu-button" type="button" v-on:click.prevent="showMenu">Click Me</button>
             <p id="logo">Uno Logo</p>
-            <p id="player-playing">Current Player: Player 3</p>
         </div>
 
         <div>
@@ -35,6 +34,7 @@ export default {
 </script>
 
 <style scoped>
+/* color for testing only, remove be merging to develop */
 * {
   background-color: aqua;
 }
@@ -42,7 +42,7 @@ export default {
 #header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 100%;
+  height: 13vh;
 }
 
 #menu-button {
@@ -50,6 +50,7 @@ export default {
     width: 100px;
     align-self: center;
     margin-left: 30px;
+    cursor: pointer;
 }
 
 #logo {

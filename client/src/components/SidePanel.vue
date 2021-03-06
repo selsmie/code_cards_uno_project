@@ -3,9 +3,9 @@
         <div class="side-panel-backdrop" v-on:click="closeSidePanel" v-if="isSidePanelOpen"></div>
         <transition name="slide">
             <div class="side-panel-menu" v-if="isSidePanelOpen">
+                <a class="close-button" v-on:click="closeSidePanel">X</a>
                 <ul class="menu-list">
-                    <li><a class="menu-item" href="">How To Play</a></li>
-                    <li><a class="menu-item" href="">Leaderboards</a></li>
+                    <li class="menu-item"><a class="menu-item-link" href="">HOW TO PLAY</a></li>
                 </ul>
             </div>
         </transition>
@@ -63,12 +63,30 @@ export default {
     width: 300px;
 }
 
-.menu-list {
+.close-button {
+    position: absolute;
+    top: 1.2em;
+    right: 1.2em;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+}
 
+.menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .menu-item {
-    
+    padding: 0 0 20px 0;
+}
+
+.menu-item-link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }
 
 

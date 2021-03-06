@@ -4,18 +4,18 @@
             <header-main v-on:click="backHome"></header-main>
         </header>
         
-        <!-- <section>
+        <section>
             <button v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
             
             <game v-if="gameInProgress"></game>
-        </section> -->
+        </section>
     </main>
 </template>
 
 <script>
-// import PlayerForm from './components/PlayerForm.vue'
-// import Game from './components/Game.vue'
+import PlayerForm from './components/PlayerForm.vue'
+import Game from './components/Game.vue'
 import Header from './components/Header.vue'
 import { eventBus } from './main'
 
@@ -27,8 +27,8 @@ export default {
         }
     },
     components: {
-        // "player-form": PlayerForm,
-        // "game": Game,
+        "player-form": PlayerForm,
+        "game": Game,
         "header-main": Header,
     },
     methods: {
