@@ -8,7 +8,7 @@
             <button v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
             
-            <game v-if="gameInProgress"></game>
+            <game></game>
         </section>
     </main>
 </template>
@@ -23,7 +23,7 @@ export default {
     name: 'App',
     data() {
         return {
-            gameInProgress: null
+            gameInProgress: null,
         }
     },
     components: {
@@ -37,11 +37,12 @@ export default {
         },
         setup: function() {
             this.gameInProgress = false
-        }
+        },
+        
     },
     mounted() {
-        eventBus.$on('start-game', () => this.gameInProgress = true)
-    }
+        eventBus.$on("play-time", () => this.gameInProgress = true) 
+    },
 
 }
 </script>

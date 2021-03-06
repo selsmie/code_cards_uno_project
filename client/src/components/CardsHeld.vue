@@ -1,5 +1,5 @@
 <template>
-  <li :class='card ? card.color: null'>{{ card.number }}</li>
+    <li :class='card ? card.color: null'>{{ card.number }}</li>
 </template>
 
 <script>
