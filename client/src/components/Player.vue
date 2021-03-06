@@ -7,9 +7,7 @@
 <script>
 export default {
     name: 'player',
-    props: ['player'],
-    methods: 
-
+    props: ['player'], 
 }
 </script>
 

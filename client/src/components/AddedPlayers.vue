@@ -1,6 +1,6 @@
 <template>
   <div>
-      <player v-for="player, index in players" :key="index"
+      <player v-for="player, index in playerList" :key="index"
       :player="player" />
   </div>
 </template>
