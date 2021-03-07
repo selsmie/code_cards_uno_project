@@ -21,6 +21,7 @@ import GameService from '@/services/GameService';
 import AddedPlayers from '@/components/AddedPlayers';
 
 export default {
+    name: 'player-form',
     data() {
         return {
             cards: [],
@@ -57,18 +58,18 @@ export default {
             }
         },
 
-        // deal() {
-        //     for (player of this.players) {
-        //         let hand = this.cards.
-        //     }
-        // },
+        deal() {
+            for (const player of this.players) {
+                const newHand = this.cards.splice(-7, 7)
+                this.$set(player, 'hand', newHand)
+            }
+        },
 
         newGame(evt) {
             evt.preventDefault()
             this.shuffle()
-
-
-            // eventBus.$emit('new-game', this.cards, this.players)
+            this.deal()
+            eventBus.$emit('new-game', this.cards, this.players)
         }
     },
     components: {
