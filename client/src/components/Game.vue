@@ -4,7 +4,7 @@
             <upcoming-player :current="currentPlayer" :players='playerList'></upcoming-player>
         </div>
         <div class='card-decks'>
-            <!-- <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck> -->
+            <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck>
         </div>
         <div class='current-player-hand' >
             <p>{{ currentPlayer.name}}'s turn</p>
