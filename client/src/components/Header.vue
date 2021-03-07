@@ -34,11 +34,6 @@ export default {
 </script>
 
 <style scoped>
-/* color for testing only, remove be merging to develop */
-* {
-  background-color: aqua;
-}
-
 #header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -54,7 +49,7 @@ export default {
 }
 
 #logo {
-  color: blueviolet;
+  color: white;
   margin: 0;
   justify-self: center;
   align-self: center;

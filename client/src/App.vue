@@ -5,7 +5,7 @@
         </header>
         
         <section>
-            <button v-if="gameInProgress === null" v-on:click='setup'>Play</button>
+            <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
             
             <game v-if="gameInProgress"></game>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import PlayerForm from './components/PlayerForm.vue'
+// import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
 import { eventBus } from './main'
@@ -27,7 +27,7 @@ export default {
         }
     },
     components: {
-        "player-form": PlayerForm,
+        // "player-form": PlayerForm,
         "game": Game,
         "header-main": Header,
     },
@@ -49,6 +49,7 @@ export default {
 <style>
 body {
     margin: 0;
+    background-color: #2c1212;
 }
 
 #main {
@@ -57,5 +58,10 @@ body {
     grid-template-columns: 100vw;
 }
 
-
+.play-button {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
 </style>

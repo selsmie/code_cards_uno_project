@@ -42,7 +42,7 @@ export default {
 }
 
 .side-panel-backdrop {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(51, 51, 51, 0.3);
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -53,7 +53,7 @@ export default {
 
 .side-panel-menu {
     overflow-y: auto;
-    background-color: #130f40;
+    background-color: #2E1114;
     position: fixed;
     left: 0;
     top: 0;
