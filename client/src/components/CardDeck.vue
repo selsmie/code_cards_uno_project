@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <p v-if='discardPile.length'>Top card: {{discardPile[0].number}} - {{discardPile[0].color}}</p>
-      <button class="draw-card" v-on:click="handleDrawCard">Draw Card</button>
+  <div class='card-decks'>
+      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fed3bb24-454f-4bdf-a721-6aa8f23e7cef/d9gnihf-ec16caeb-ec9c-4870-9480-57c7711d844f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZmVkM2JiMjQtNDU0Zi00YmRmLWE3MjEtNmFhOGYyM2U3Y2VmXC9kOWduaWhmLWVjMTZjYWViLWVjOWMtNDg3MC05NDgwLTU3Yzc3MTFkODQ0Zi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.gou6LQOyuHdVqL_nFIsWaiBXlt4AVGipFl75lBWiWIM" id='card-img' v-on:click='handleDrawCard'>
+      <h2 v-if='discardPile.length' :class='discardPile[0] ? discardPile[0].color: null' id='top-card'>{{discardPile[0].number}}</h2>
   </div>
 </template>
 
@@ -16,7 +16,6 @@ export default {
             remainingCardDeck: [],
             discardPile: [],
         }
-        
     },  
     methods: {
         handleDrawCard() {
@@ -33,19 +32,24 @@ export default {
         },
         loadCards() {
             this.remainingCardDeck = this.remainingCards
-        }
+        },
+        // sendTopCard: function() {
+        //     eventBus.$emit("top-card", this.discardPile[0])
+        // }  
     },
 
     mounted() {
         this.loadCards()
         this.handleInitialCard()
+        // this.sendTopCard()
+
 
         eventBus.$on('selected-card', (card) => this.discardPile.unshift(card))
     },
     computed: {
-        sendTopCard: function() {
+        sendTopCardAuto: function() {
             eventBus.$emit("top-card", this.discardPile[0])
-        }  
+        } 
     },
 
     
@@ -54,8 +58,43 @@ export default {
 </script>
 
 <style>
+.card-decks {
+    display: flex;
+    justify-content: center;
+}
 
-.draw-card {
-    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fed3bb24-454f-4bdf-a721-6aa8f23e7cef/d9gnihf-ec16caeb-ec9c-4870-9480-57c7711d844f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZmVkM2JiMjQtNDU0Zi00YmRmLWE3MjEtNmFhOGYyM2U3Y2VmXC9kOWduaWhmLWVjMTZjYWViLWVjOWMtNDg3MC05NDgwLTU3Yzc3MTFkODQ0Zi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.gou6LQOyuHdVqL_nFIsWaiBXlt4AVGipFl75lBWiWIM');
+#card-img {
+    height: 120px;
+    cursor: pointer;
+}
+
+#top-card {
+    height: 116px;
+    width: 70px;
+    border: 2px solid black;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    margin: 0px 15px;
+    color: white;
+}
+
+#top-card.red {
+    background-color: red;
+}
+
+#top-card.blue {
+    background-color: blue;
+}
+
+#top-card.green {
+    background-color: green;
+}
+
+#top-card.yellow {
+    background-color: yellow;
+    color: black;
 }
 </style>

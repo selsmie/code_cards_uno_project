@@ -11,6 +11,7 @@
             <player-hand :hand="currentPlayer.hand"></player-hand>
         </div>
         <div class='action-buttons'>
+            <button>UNO!</button>
             <button v-on:click="nextTurn">End Turn</button>
         </div>
     </section>
@@ -82,7 +83,27 @@ export default {
 </script>
 
 <style>
-p {
+.current-player-hand > p {
     color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+
+.action-buttons > button {
+    width: 80px;
+    height: 60px;
+    border-radius: 12px;
+}
+
+.player-card-counts {
+    width: 200px;
+    margin: 0px;
 }
 </style>

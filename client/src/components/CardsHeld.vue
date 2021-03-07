@@ -28,13 +28,13 @@ export default {
             this.topCard = card
         })
     },
-    // computed: {
-    //     checkTopCard: function() {
-    //         eventBus.$on('top-card', (card) => {
-    //             this.topCard = card
-    //         })
-    //     }
-    // }
+    computed: {
+        // checkTopCard: function() {
+        //     eventBus.$on('top-card', (card) => {
+        //         this.topCard = card
+        //     })
+        // }
+    }
 }
 </script>
 

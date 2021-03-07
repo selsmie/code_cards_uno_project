@@ -1,5 +1,5 @@
 <template>
-  <li :class="current === player ? 'current': null">{{ player.name }} - {{ player.hand.length }}</li>
+  <li :class="current === player ? 'current': null" id='player-count'>{{ player.name }} - {{ player.hand.length }}</li>
 </template>
 
 <script>
@@ -13,5 +13,9 @@ export default {
 .current {
   color: red;
   font-weight: bold;
+}
+
+#player-count {
+  list-style: none;
 }
 </style>
