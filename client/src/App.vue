@@ -8,7 +8,7 @@
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
 
-            <game v-if="gameInProgress"></game>
+            <game></game>
         </section>
     </main>
 </template>
