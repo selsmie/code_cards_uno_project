@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import PlayerForm from './components/PlayerForm.vue'
+import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
 import { eventBus } from './main'
@@ -26,7 +26,7 @@ export default {
         }
     },
     components: {
-        // "player-form": PlayerForm,
+        "player-form": PlayerForm,
         "game": Game,
         "header-main": Header,
     },
@@ -47,7 +47,7 @@ export default {
 <style>
 body {
     margin: 0;
-    background-color: #2c1212;
+    background-color: #f3baba;
 }
 #main {
     display: grid;
