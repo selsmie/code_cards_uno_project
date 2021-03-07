@@ -3,8 +3,15 @@
 </template>
 
 <script>
-export default {
+import { eventBus } from '../main.js'
 
+export default {
+    name: 'CardDeck',
+    props: ['card-deck'],
+    data() {
+        
+    },
+        
 }
 </script>
 
