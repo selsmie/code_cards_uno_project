@@ -7,33 +7,17 @@ These instructions will get the project up and running on your local machine for
 npm install
 ```
 
-# Install dependencies (if not already done):
-```
-npm install body-parser
-npm install mongodb
-npm install express
-npm install cors
-```
-
-# Install devDependencies (if not already done):
-```
-npm install --save-dev nodemon
-```
-
-# Add to scripts (if not already done):
-In package.json file under "scripts" add:
-```
-    "server:dev": "nodemon server.js",
-    "seeds": "mongo < db/seeds.js"
-```
-
 # Seed the database:
 ```
 npm run seeds
 ```
 
-# Run express (leave running in separate terminal):
+# Run server (leave running in separate terminal):
 ```
 npm run server:dev
 ```
 
+# Run client (leave running in separate terminal):
+```
+npm run serve
+```
