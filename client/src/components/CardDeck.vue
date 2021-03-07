@@ -16,8 +16,6 @@ export default {
         return {
             remainingCardDeck: [],
             discardPile: [],
-            currentTopCard: null,
-            selectedCard: null
         }
         
     },  
@@ -27,15 +25,20 @@ export default {
         },
 
         handlePlaceCard() {
-            discardPile.unshift(this.selectedCard)
+            this.discardPile.unshift(this.selectedCard)
         },
 
+        handleInitialCard() {
+            this.discardPile.unshift(this.remainingCardDeck[0])
+            this.remainingCardDeck.splice(0, 1)
+        }
+    },
 
     mounted() {
-        
+        this.handleInitialCard();
     }
 
-    }  
+    
 }
 
 </script>
