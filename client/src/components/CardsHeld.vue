@@ -4,7 +4,6 @@
 
 <script>
 import { eventBus } from '../main.js'
-import CardDeck from './CardDeck.vue'
 
 export default {
     name: "cards-held",
@@ -12,14 +11,15 @@ export default {
     data() {
         return {
             selectedCard: null,
-            topCard: null
+            topCard: null,
         }
     },
     methods: {
         select: function() {
-            if (this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+            if (this.card.color === this.topCard.color || this.card.number == this.topCard.number) {
                 this.selectedCard = this.card
                 eventBus.$emit('selected-card', this.selectedCard)
+                this.selectedCard = null
             }
         }
     },
@@ -27,7 +27,14 @@ export default {
         eventBus.$on('top-card', (card) => {
             this.topCard = card
         })
-    }
+    },
+    // computed: {
+    //     checkTopCard: function() {
+    //         eventBus.$on('top-card', (card) => {
+    //             this.topCard = card
+    //         })
+    //     }
+    // }
 }
 </script>
 
@@ -44,6 +51,7 @@ export default {
     font-size: 25px;
     color: white;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .red {
@@ -58,7 +66,7 @@ export default {
     background-color: green;
 }
 
-.yellow {
+#cards-held.yellow {
     background-color: yellow;
     color: black;
 }

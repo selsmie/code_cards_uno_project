@@ -60,16 +60,6 @@ export default {
         },
     },
     mounted() {
-        // eventBus.$on('card-list', (cardList) => {
-        //     this.remainingCardDeck = cardList
-        // })
-
-        // eventBus.$on('player-list', (playerList) => {
-        //     this.playerList = playerList
-        //     this.startPlayer()
-        //     this.sortCardColors()
-        // })
-
         eventBus.$on('new-game', (cards, players) => {
             this.remainingCardDeck = cards
             this.playerList = players
