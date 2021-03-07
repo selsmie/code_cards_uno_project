@@ -4,7 +4,7 @@
             
         </div>
         <div class='card-decks'>
-            <!-- <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck> -->
+            <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck>
         </div>
         <div class='current-player-hand' >
             <p>{{ currentPlayer.name}}'s turn</p>
@@ -20,6 +20,7 @@
 import { eventBus } from '../main.js'
 
 import PlayerHand from './PlayerHand.vue'
+import CardDeck from './CardDeck.vue'
 
 export default {
     name: 'game',
@@ -33,6 +34,7 @@ export default {
     },
     components: {
         "player-hand": PlayerHand,
+        "card-deck": CardDeck
     },
     methods: {
         startPlayer: function() {
