@@ -17,8 +17,8 @@ export default {
     },
     methods: {
         select: function() {
-            if (card.color === this.topCard.color || card.color === this.topCard.number) {
-                this.selectedCard = card
+            if (this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+                this.selectedCard = this.card
                 eventBus.$emit('selected-card', this.selectedCard)
             }
         }

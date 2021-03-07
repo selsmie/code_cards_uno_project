@@ -1,5 +1,5 @@
 <template>
-  <li v-if='player._id !== current._id'>{{ player.name }} - {{ player.hand.length }}</li>
+  <li :class="current === player ? 'current': null">{{ player.name }} - {{ player.hand.length }}</li>
 </template>
 
 <script>
@@ -10,5 +10,8 @@ export default {
 </script>
 
 <style>
-
+.current {
+  color: red;
+  font-weight: bold;
+}
 </style>

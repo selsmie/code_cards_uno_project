@@ -1,7 +1,6 @@
 <template>
-  <ul>
-      <li id='current'>{{ currentPlayer.name }} - {{ currentPlayer.hand.length }}</li>
-      <next-player v-for='(player, index) in players' :key='index' :player='player' :current='currentPlayer'></next-player>
+  <ul id='testing'>
+    <next-player v-for='(player, index) in players' :key='index' :player='player' :current='current'></next-player>
   </ul>
 </template>
 
@@ -10,22 +9,26 @@ import NextPlayer from './NextPlayer.vue'
 
 export default {
     name: 'upcoming-player',
-    props: ['players', 'currentPlayer'],
+    data() {
+        return {
+            nextIndex: null
+        }
+    },
+    props: ['players', 'current'],
     components: {
         "next-player": NextPlayer
     },
     computed: {
-        upNext: function() {
-            this.players.forEach((player) => {
-                if (player !== this.currentPlayer) {
-                    return player
-                }
-            })
+        currentIndex() {
+            const index = this.players.indexOf(this.current)
+            this.nextIndex = index + 1
         }
     }
 }
 </script>
 
 <style>
-
+#testing {
+    display: grid;
+}
 </style>

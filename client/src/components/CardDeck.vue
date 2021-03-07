@@ -1,6 +1,7 @@
 <template>
   <div>
-      <button class="pick-card" v-on:click="handlePickCard">Pick Card</button>
+      <p>Top card: {{discardPile[1].number}} - {{discardPile[1].color}}</p>
+      <button class="draw-card" v-on:click="handleDrawCard">Draw Card</button>
   </div>
 </template>
 
@@ -18,8 +19,8 @@ export default {
         
     },  
     methods: {
-        handlePickCard() {
-            eventBus.$emit("picked-card", this.remainingCardDeck.shift())
+        handleDrawCard() {
+            eventBus.$emit("draw-card", this.remainingCardDeck.shift())
         },
 
         handlePlaceCard() {
@@ -31,14 +32,19 @@ export default {
             this.remainingCardDeck.splice(0, 1)
         },
         topCard() {
-            eventBus.$emit("top-card", this.discardPile[0])
+            eventBus.$emit("top-card", this.discardPile[1])
+        },
+        loadCards() {
+            this.remainingCardDeck = this.remainingCards
         }
     },
 
     mounted() {
+        this.loadCards()
         this.handleInitialCard();
         this.handlePlaceCard();
         this.topCard();
+  
     }
 
     

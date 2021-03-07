@@ -83,7 +83,7 @@ export default {
             this.currentPlayer.hand.splice(index, 1)
         })
 
-        eventBus.$on('picked-card', (card) => {
+        eventBus.$on('draw-card', (card) => {
             this.currentPlayer.hand.push(card)
         })
     },
