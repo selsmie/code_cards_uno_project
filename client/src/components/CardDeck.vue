@@ -36,6 +36,7 @@ export default {
 
     mounted() {
         this.handleInitialCard();
+        this.handlePlaceCard();
     }
 
     
