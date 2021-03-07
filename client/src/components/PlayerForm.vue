@@ -8,16 +8,17 @@
     <br>
     <button @click="newGame" type="button" class="new-game-btn">Start new game!</button>
 
-    <!-- <section>
-        <added-players :players="playerList"/>
-    </section> -->
+    <section>
+        <added-players :playerList="players"/>
+    </section>
 
 </div>
 </template>
 
 <script>
+import { eventBus } from '@/main'
 import GameService from '@/services/GameService';
-// import AddedPlayers from '@/components/AddedPlayers';
+import AddedPlayers from '@/components/AddedPlayers';
 
 export default {
     data() {
@@ -30,6 +31,11 @@ export default {
     mounted() {
         GameService.getCards()
         .then(cards => this.cards = cards)
+
+        eventBus.$on('delete-player', (playerToDelete) => {
+            const i = this.players.findIndex(player => player === playerToDelete)
+            this.players.splice(i, 1)
+        })
     },
 
     methods: {
@@ -41,7 +47,6 @@ export default {
             })
             this.name = ''
         },
-
 
         shuffle() {
             for (let i = this.cards.length - 1; i > 0; i--) {
@@ -66,9 +71,9 @@ export default {
             // eventBus.$emit('new-game', this.cards, this.players)
         }
     },
-    // components: {
-    //     'added-players': AddedPlayers
-    // }
+    components: {
+        'added-players': AddedPlayers
+    }
 }
 </script>
 
