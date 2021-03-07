@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button class="deal-card" v-on:click="handleDeal">Deal Card</button>
+      <button class="pick-card" v-on:click="handlePickCard">Pick Card</button>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import CardsHeld from './CardsHeld.vue'
 
 export default {
     name: 'CardDeck',
-    props: ['card-deck'],
+    props: ['remainingCards', 'selectedCard'],
     data() {
         return {
             remainingCardDeck: [],
@@ -22,21 +22,17 @@ export default {
         
     },  
     methods: {
-        handleDeal() {
-            CardsHeld.push(remainingCardDeck.[1])
+        handlePickCard() {
+            eventBus.$emit("picked-card", this.remainingCardDeck.shift())
         },
 
-        handleTakeTurn() {
-            discardPile.push(selectedCard)
+        handlePlaceCard() {
+            discardPile.unshift(this.selectedCard)
         },
+
+
     mounted() {
-        eventBus.$on('card-list', (cardList) => {
-            this.remainingCardDeck = cardList
-        })
-
-        eventBus.$on('top-card', (card) => {
-            this.currentTopCard = card
-        }) 
+        
     }
 
     }  
