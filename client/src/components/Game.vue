@@ -82,9 +82,11 @@ export default {
             const index = this.currentPlayer.hand.indexOf(this.selectedCard)
             this.currentPlayer.hand.splice(index, 1)
         })
+
+        eventBus.$on('picked-card', (card) => {
+            this.currentPlayer.hand.push(card)
+        })
     },
-    computed: {
-    }
 
 }
 </script>

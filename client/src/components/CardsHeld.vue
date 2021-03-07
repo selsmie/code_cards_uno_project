@@ -4,21 +4,30 @@
 
 <script>
 import { eventBus } from '../main.js'
+import CardDeck from './CardDeck.vue'
 
 export default {
     name: "cards-held",
     props: ['card'],
     data() {
         return {
-            selectedCard: null
+            selectedCard: null,
+            topCard: null
         }
     },
     methods: {
         select: function() {
-            this.selectedCard = card
-            eventBus.$emit('selected-card', this.selectedCard)
+            if (card.color === this.topCard.color || card.color === this.topCard.number) {
+                this.selectedCard = card
+                eventBus.$emit('selected-card', this.selectedCard)
+            }
         }
     },
+    mounted() {
+        eventBus.$on('top-card', (card) => {
+            this.topCard = card
+        })
+    }
 }
 </script>
 
