@@ -1,10 +1,10 @@
 <template>
     <section v-if='currentPlayer'>
         <div class='player-card-counts'>
-            <!-- <button v-on:click='sortCardColors'>Test</button> -->
+            
         </div>
         <div class='card-decks'>
-            <!-- <card-deck></card-deck> -->
+            <!-- <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck> -->
         </div>
         <div class='current-player-hand' >
             <p>{{ currentPlayer.name}}'s turn</p>
@@ -29,7 +29,6 @@ export default {
             remainingCardDeck: [],
             currentPlayer: null,
             selectedCard: null,
-            currentTopCard: null,
         }
     },
     components: {
@@ -64,8 +63,14 @@ export default {
             this.playerList = playerList
             this.startPlayer()
             this.sortCardColors()
-
         })
+
+        // eventBus.$on('new-game', (cards, players) => {
+        //     this.remainingCardDeck = cards
+        //     this.playerList = players
+        //     this.startPlayer()
+        //     this.sortCardColors()
+        // })
 
         eventBus.$on('top-card', (card) => {
             this.currentTopCard = card
@@ -78,5 +83,7 @@ export default {
 </script>
 
 <style>
-
+p {
+    color: white;
+}
 </style>
