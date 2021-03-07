@@ -1,23 +1,25 @@
 <template>
-  <section>
-      <div class='player-card-counts'>
-
-      </div>
-      <div class='card-decks'>
-          <!-- <card-deck></card-deck> -->
-      </div>
-      <div class='current-player-hand'>
-          <!-- <player-hand></player-hand> -->
-      </div>
-      <div class='action-buttons'>
-          <button v-on:click="startPlayer">Start</button>
-          <button v-on:click="nextTurn">End Turn</button>
-      </div>
-  </section>
+    <section v-if='currentPlayer'>
+        <div class='player-card-counts'>
+            
+        </div>
+        <div class='card-decks'>
+            <!-- <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck> -->
+        </div>
+        <div class='current-player-hand' >
+            <p>{{ currentPlayer.name}}'s turn</p>
+            <player-hand :hand="currentPlayer.hand"></player-hand>
+        </div>
+        <div class='action-buttons'>
+            <button v-on:click="nextTurn">End Turn</button>
+        </div>
+    </section>
 </template>
 
 <script>
 import { eventBus } from '../main.js'
+
+import PlayerHand from './PlayerHand.vue'
 
 export default {
     name: 'game',
@@ -29,10 +31,8 @@ export default {
             selectedCard: null,
         }
     },
-    props: ['playersList', 'cardList'],
-    componenets: {
-        // "player-hand": PlayerHand,
-        // "card-deck": CardDeck
+    components: {
+        "player-hand": PlayerHand,
     },
     methods: {
         startPlayer: function() {
@@ -46,19 +46,44 @@ export default {
             } else {
                 this.currentPlayer = this.playerList[0]
             }
-        }
-
+            this.sortCardColors()
+        },
+        sortCardColors: function() {
+                this.currentPlayer.hand.sort(function (a, b) {
+                    return a.color.length - b.color.length
+                })
+        },
     },
-    // mounted() {
-    //     eventBus.$on('card-list', (cardList, playerList) => {
-    //         this.remainingCardDeck = cardList,
-    //         this.playerList = playerList
-    //     })
-    // }
+    mounted() {
+        eventBus.$on('card-list', (cardList) => {
+            this.remainingCardDeck = cardList
+        })
+
+        eventBus.$on('player-list', (playerList) => {
+            this.playerList = playerList
+            this.startPlayer()
+            this.sortCardColors()
+        })
+
+        // eventBus.$on('new-game', (cards, players) => {
+        //     this.remainingCardDeck = cards
+        //     this.playerList = players
+        //     this.startPlayer()
+        //     this.sortCardColors()
+        // })
+
+        eventBus.$on('top-card', (card) => {
+            this.currentTopCard = card
+        })  
+    },
+    computed: {
+    }
 
 }
 </script>
 
 <style>
-
+p {
+    color: white;
+}
 </style>
