@@ -18,7 +18,6 @@
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
 import { eventBus } from './main'
-
 export default {
     name: 'App',
     data() {
@@ -42,7 +41,6 @@ export default {
     mounted() {
         eventBus.$on('start-game', () => this.gameInProgress = true)
     }
-
 }
 </script>
 
@@ -51,13 +49,11 @@ body {
     margin: 0;
     background-color: #2c1212;
 }
-
 #main {
     display: grid;
     grid-template-rows: 13vh 87vh;
     grid-template-columns: 100vw;
 }
-
 .play-button {
     position: fixed;
     top: 50%;
