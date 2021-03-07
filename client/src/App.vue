@@ -3,7 +3,8 @@
         <header>
             <header-main v-on:click="backHome"></header-main>
         </header>
-        <player-form/>        
+        <player-form/>   
+<how-to-play></how-to-play>      
         <section>
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
@@ -17,7 +18,10 @@
 import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
+import HowToPlay from './components/HowToPlay.vue'
 import { eventBus } from './main'
+
+
 export default {
     name: 'App',
     data() {
@@ -29,6 +33,7 @@ export default {
         "player-form": PlayerForm,
         "game": Game,
         "header-main": Header,
+        "how-to-play": HowToPlay
     },
     methods: {
         backHome: function() {
@@ -58,6 +63,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 </style>
