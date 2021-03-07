@@ -6,6 +6,7 @@
                 <a class="close-button" v-on:click="closeSidePanel">X</a>
                 <ul class="menu-list">
                     <li class="menu-item"><a class="menu-item-link" href="">HOW TO PLAY</a></li>
+                    <li class="menu-item"><button>HOW TO PLAY</button></li>
                 </ul>
             </div>
         </transition>
@@ -13,10 +14,14 @@
 </template>
 
 <script>
+import HowToPlay from './HowToPlay.vue'
 import { store, mutations } from "@/store.js"
 
 export default {
     name: "side-panel",
+    components: {
+        "how-to-play": HowToPlay
+    },
     methods: {
         closeSidePanel: mutations.toggleNav
     },
