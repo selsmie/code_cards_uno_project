@@ -7,8 +7,6 @@
 <script>
 import { eventBus } from '../main.js'
 
-import CardsHeld from './CardsHeld.vue'
-
 export default {
     name: 'CardDeck',
     props: ['remainingCards', 'selectedCard'],
@@ -31,12 +29,16 @@ export default {
         handleInitialCard() {
             this.discardPile.unshift(this.remainingCardDeck[0])
             this.remainingCardDeck.splice(0, 1)
+        },
+        topCard() {
+            eventBus.$emit("top-card", this.discardPile[0])
         }
     },
 
     mounted() {
         this.handleInitialCard();
         this.handlePlaceCard();
+        this.topCard();
     }
 
     
