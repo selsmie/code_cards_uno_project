@@ -8,13 +8,13 @@
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
 
-            <game v-if="gameInProgress"></game>
+            <game></game>
         </section>
     </main>
 </template>
 
 <script>
-// import PlayerForm from './components/PlayerForm.vue'
+import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
 import { eventBus } from './main'
@@ -26,7 +26,7 @@ export default {
         }
     },
     components: {
-        // "player-form": PlayerForm,
+        "player-form": PlayerForm,
         "game": Game,
         "header-main": Header,
     },
