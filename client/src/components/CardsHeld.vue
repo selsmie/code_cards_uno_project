@@ -1,16 +1,29 @@
 <template>
-    <li :class='card ? card.color: null'>{{ card.number }}</li>
+    <li :class='card ? card.color: null' id='cards-held' v-on:click='select'>{{ card.number }}</li>
 </template>
 
 <script>
+import { eventBus } from '../main.js'
+
 export default {
     name: "cards-held",
-    props: ['card']
+    props: ['card'],
+    data() {
+        return {
+            selectedCard: null
+        }
+    },
+    methods: {
+        select: function() {
+            this.selectedCard = card
+            eventBus.$emit('selected-card', this.selectedCard)
+        }
+    },
 }
 </script>
 
 <style>
-li{
+#cards-held {
     list-style: none;
     height: 50px;
     padding: 5px 13px;

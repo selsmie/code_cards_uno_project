@@ -1,7 +1,7 @@
 <template>
     <section v-if='currentPlayer'>
         <div class='player-card-counts'>
-            
+            <upcoming-player :current="currentPlayer" :players='playerList'></upcoming-player>
         </div>
         <div class='card-decks'>
             <!-- <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck> -->
@@ -20,6 +20,8 @@
 import { eventBus } from '../main.js'
 
 import PlayerHand from './PlayerHand.vue'
+import CardDeck from './CardDeck.vue'
+import UpcomingPlayerList from './UpcomingPlayerList'
 
 export default {
     name: 'game',
@@ -33,6 +35,8 @@ export default {
     },
     components: {
         "player-hand": PlayerHand,
+        "card-deck": CardDeck,
+        "upcoming-player": UpcomingPlayerList 
     },
     methods: {
         startPlayer: function() {
@@ -47,6 +51,7 @@ export default {
                 this.currentPlayer = this.playerList[0]
             }
             this.sortCardColors()
+            this.selectedCard = null
         },
         sortCardColors: function() {
                 this.currentPlayer.hand.sort(function (a, b) {
@@ -72,9 +77,11 @@ export default {
         //     this.sortCardColors()
         // })
 
-        eventBus.$on('top-card', (card) => {
-            this.currentTopCard = card
-        })  
+        eventBus.$on('selected-card', (card) => {
+            this.selectedCard = card
+            const index = this.currentPlayer.hand.indexOf(this.selectedCard)
+            this.currentPlayer.hand.splice(index, 1)
+        })
     },
     computed: {
     }

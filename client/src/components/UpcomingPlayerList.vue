@@ -1,7 +1,7 @@
 <template>
   <ul>
       <li id='current'>{{ currentPlayer.name }} - {{ currentPlayer.hand.length }}</li>
-      <next-player :player='upNext' ></next-player>
+      <next-player v-for='(player, index) in players' :key='index' :player='player' :current='currentPlayer'></next-player>
   </ul>
 </template>
 

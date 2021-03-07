@@ -1,11 +1,11 @@
 <template>
-  <li>{{ player.name }} - {{ player.hand.length }}</li>
+  <li v-if='player._id !== current._id'>{{ player.name }} - {{ player.hand.length }}</li>
 </template>
 
 <script>
 export default {
     name: 'next-player',
-    props: ['player']
+    props: ['player', 'current']
 }
 </script>
 
