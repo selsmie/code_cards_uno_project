@@ -47,7 +47,7 @@ export default {
 <style>
 body {
     margin: 0;
-    background-color: #2c1212;
+    background-color: #f3baba;
 }
 #main {
     display: grid;
