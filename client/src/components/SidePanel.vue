@@ -15,7 +15,7 @@
 
 <script>
 import HowToPlay from './HowToPlay.vue'
-import { store, mutations, howToPlay, howToPlayToggle } from "@/store.js"
+import { navOpen, navToggle, howToPlay, howToPlayToggle } from "@/store.js"
 
 export default {
     name: "side-panel",
@@ -23,14 +23,14 @@ export default {
         "how-to-play": HowToPlay
     },
     methods: {
-        closeSidePanel: mutations.toggleNav,
+        closeSidePanel: navToggle.toggleNav,
         openHowToPlay() {
             howToPlayToggle.toggleHowToPlay()
         }
     },
     computed: {
         isSidePanelOpen() {
-            return store.isNavOpen
+            return navOpen.isNavOpen
         },
         isHowToPlayOpen() {
             return howToPlay.isHowToPlayOpen
@@ -82,6 +82,7 @@ export default {
     font-family: 'Roboto',sans-serif;
     font-weight: 300;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .menu-list {

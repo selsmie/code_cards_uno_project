@@ -13,7 +13,7 @@
 
 <script>
 import SidePanel from "@/components/SidePanel.vue"
-import { store, mutations } from "@/store.js"
+import { navOpen, navToggle } from "@/store.js"
 
 export default {
   name: "header-component",
@@ -22,12 +22,12 @@ export default {
   },
   methods: {
         showMenu() {
-            mutations.toggleNav()
+            navToggle.toggleNav()
     },
   },
   computed: {
     	isBurgerActive() {
-            return store.isNavOpen
+            return navOpen.isNavOpen
       }
   },
 }

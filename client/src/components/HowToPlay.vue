@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { howToPlayToggle } from '@/store.js'
+import { navOpen, navToggle, howToPlayToggle } from '@/store.js'
 
 export default {
     "name": "how-to-play",
