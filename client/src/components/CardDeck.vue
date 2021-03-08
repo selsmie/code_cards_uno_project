@@ -22,7 +22,7 @@ export default {
             if (this.drawPile.length > 0) {
                 eventBus.$emit("draw-card", this.drawPile.shift())
             } else {
-                console.log('error')
+                eventBus.$emit("draw-pile-empty")
             }
         },     
     },

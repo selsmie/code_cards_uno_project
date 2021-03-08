@@ -82,6 +82,15 @@ export default {
             this.currentPlayer.hand.push(card)
             this.nextTurn()
         })
+
+        eventBus.$on('draw-pile-empty', () => {
+            this.discardPile.map((card, index) => {
+                if (index > 0) {
+                    this.drawPile.push(card)
+                }
+            })
+            this.discardPile.splice(1, this.discardPile.length)
+        })
     },
     methods: {
         backHome: function() {
