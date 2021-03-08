@@ -39,6 +39,10 @@ export default {
         eventBus.$on('new-game', () => {
             this.gameInProgress = true
         })
+
+        eventBus.$on('play-again', () => {
+            this.gameInProgress = false
+        })
     }
 }
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <li :class="current === player ? 'current': null" id='player-count'>{{ player.name }} - {{ player.hand.length }}</li>
+  <li :class="current === player ? 'current': null" id='player-count'>{{ player.name }} - {{ player.hand.length }} 
+    <span v-if='player.hand.length === 1'>UNO</span>
+  </li>
 </template>
 
 <script>
