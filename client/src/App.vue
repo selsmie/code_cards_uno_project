@@ -3,7 +3,7 @@
             <header-main v-on:click="backHome"></header-main>
         <section>
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
-            <player-form v-if="gameInProgress === false"></player-form>
+            <player-form :players='players' v-if="gameInProgress === false"></player-form>
             <game></game>
         </section>
     </main>
@@ -13,6 +13,7 @@
 import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
+import GameService from '@/services/GameService'
 import { eventBus } from './main'
 
 export default {
@@ -31,7 +32,13 @@ export default {
         "header-main": Header,
     },
     mounted() {
+        GameService.getCards()
+            .then(originalDeck => this.drawPile = originalDeck)
+
         eventBus.$on('new-game', () => {
+            this.shuffle()
+            this.startDiscardPile()
+            this.deal()
             this.gameInProgress = true
         })
 
@@ -39,16 +46,9 @@ export default {
             this.gameInProgress = false
         })
 
-// start refactor of playerForm
-        GameService.getCards()
-            .then(originalDeck => this.cards = originalDeck)
-
         eventBus.$on('new-player', (name) => {
             if (!this.players.find(player => player.name === name)) {
-                this.players.push({
-                    name: name,
-                    hand: []
-                })
+                this.players.push({ name: name, hand: [] })
             } else {
                 alert("Be original! There can only be 'uno' player with that name.")
             }
@@ -58,14 +58,6 @@ export default {
             const i = this.players.findIndex(player => playerToDelete === player)
             this.players.splice(i, 1)
         })
-
-        eventBus.$on('new-game', () => {
-            this.shuffle()
-            this.startDiscardPile()
-            this.deal()
-            this.gameInProgress = true
-        })
-// end refactor of playerForm
 
 
     },
@@ -77,7 +69,6 @@ export default {
             this.gameInProgress = false
         },
 
-// start refactor of playerForm
         shuffle() {
             for (let i = this.drawPile.length - 1; i > 0; i--) {
                 let randomIndex = Math.floor(Math.random() * i)
@@ -97,7 +88,6 @@ export default {
         startDiscardPile() {
             this.discardPile = this.drawPile.splice(-1, 1)
         },
-// end refactor of playerForm
 
 
     }

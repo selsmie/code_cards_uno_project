@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { eventBus } from '@/main'
-import GameService from '@/services/GameService';
+import { eventBus } from '@/main';
 import AddedPlayers from '@/components/AddedPlayers';
 
 export default {
