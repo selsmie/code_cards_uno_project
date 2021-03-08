@@ -81,6 +81,7 @@ export default {
 
         eventBus.$on('draw-card', (card) => {
             this.currentPlayer.hand.push(card)
+            this.nextTurn()
         })
     },
 
