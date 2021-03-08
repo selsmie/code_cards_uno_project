@@ -33,7 +33,6 @@ export default {
         "player-form": PlayerForm,
         "game": Game,
         "header-main": Header,
-        "how-to-play": HowToPlay
     },
     mounted() {
         GameService.getCards()
