@@ -11,33 +11,24 @@ import { eventBus } from '../main.js'
 
 export default {
     name: 'CardDeck',
-    props: ['remainingCards', 'discardCard'],
+    props: ['drawPile', 'discardPile'],
     data() {
         return {
             remainingCardDeck: [],
         }
     },  
     methods: {
-        loadCards() {
-            this.remainingCardDeck = this.remainingCards
-        },
-
         handleDrawCard() {
-            if (this.remainingCardDeck.length > 0) {
-                eventBus.$emit("draw-card", this.remainingCardDeck.shift())
+            if (this.drawPile.length > 0) {
+                eventBus.$emit("draw-card", this.drawPile.shift())
             } else {
                 console.log('error')
             }
-        },      
+        },     
     },
-
-    mounted() {
-        this.loadCards()
-    },
-
     computed: {
         showTopCard: function() {
-            return this.discardCard[0]
+            return this.discardPile[0]
         }
     }
 }

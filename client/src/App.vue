@@ -4,7 +4,7 @@
         <section>
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form :players='players' v-if="gameInProgress === false"></player-form>
-            <game></game>
+            <game :players='players' :drawPile='drawPile' :discardPile='discardPile' :currentPlayer='currentPlayer' :winner='winner'></game>
         </section>
     </main>
 </template>
@@ -24,6 +24,9 @@ export default {
             players: [],
             drawPile: [],
             discardPile: [],
+            currentPlayer:  null,
+            selectedCard: null,
+            winner: false,
         }
     },
     components: {
@@ -39,11 +42,18 @@ export default {
             this.shuffle()
             this.startDiscardPile()
             this.deal()
+            this.startPlayer()
+            this.sortCardColors()
             this.gameInProgress = true
         })
 
         eventBus.$on('play-again', () => {
             this.gameInProgress = false
+            this.winner = false
+            this.remainingCardDeck = []
+            this.discardPile = []
+            this.currentPlayer = null
+            this.selectedCard = null
         })
 
         eventBus.$on('new-player', (name) => {
@@ -59,7 +69,19 @@ export default {
             this.players.splice(i, 1)
         })
 
+        eventBus.$on('selected-card', (card) => {
+            this.selectedCard = card
+            const index = this.currentPlayer.hand.indexOf(this.selectedCard)
+            this.currentPlayer.hand.splice(index, 1)
+            this.discardPile.unshift(this.selectedCard)
+            this.selectedCard = null
+            this.winnerIs()
+        })
 
+        eventBus.$on('draw-card', (card) => {
+            this.currentPlayer.hand.push(card)
+            this.nextTurn()
+        })
     },
     methods: {
         backHome: function() {
@@ -80,7 +102,7 @@ export default {
 
         deal() {
             for (const player of this.players) {
-                const newHand = this.drawPile.splice(-7, 1)
+                const newHand = this.drawPile.splice(-7, 7)
                 this.$set(player, 'hand', newHand)
             }
         },
@@ -89,7 +111,35 @@ export default {
             this.discardPile = this.drawPile.splice(-1, 1)
         },
 
+        startPlayer: function() {
+            let index = Math.floor(Math.random() * this.players.length)
+            this.currentPlayer = this.players[index]
+        },
 
+        nextTurn: function() {
+            const currentIndex = this.players.indexOf(this.currentPlayer)
+            if (currentIndex <= (this.players.length - 2)) {
+                this.currentPlayer = this.players[currentIndex + 1]
+            } else {
+                this.currentPlayer = this.players[0]
+            }
+            this.sortCardColors()
+        },
+
+        sortCardColors: function() {
+                this.currentPlayer.hand.sort(function (a, b) {
+                    return a.color.length - b.color.length
+                })
+        },
+
+        winnerIs: function() {
+            if (this.currentPlayer.hand.length) {
+                this.nextTurn()
+            } else {
+                this.winner = true
+                // GameService.addWinner(this.currentPlayer.name)
+            }
+        }
     }
     }
 

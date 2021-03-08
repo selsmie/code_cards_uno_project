@@ -3,10 +3,10 @@
     <main v-if='!winner'>
         <section v-if='currentPlayer'>
             <div class='player-card-counts'>
-                <upcoming-player :current="currentPlayer" :players='playerList'></upcoming-player>
+                <upcoming-player :current="currentPlayer" :players='players'></upcoming-player>
             </div>
             <div class='card-decks'>
-                <card-deck :remainingCards='remainingCardDeck' :discardCard="discardPile"></card-deck>
+                <card-deck :drawPile='drawPile' :discardPile="discardPile"></card-deck>
             </div>
             <div class='current-player-hand' >
                 <p>{{ currentPlayer.name}}'s turn</p>
@@ -32,87 +32,20 @@ import { eventBus } from '../main.js'
 import PlayerHand from './PlayerHand.vue'
 import CardDeck from './CardDeck.vue'
 import UpcomingPlayerList from './UpcomingPlayerList.vue'
-import GameService from '../services/GameService.js'
 
 export default {
     name: 'game',
-    data() {
-        return {
-            playerList: [],
-            remainingCardDeck: [],
-            discardPile: [],
-            currentPlayer: null,
-            selectedCard: null,
-            winner: false
-        }
-    },
+    props: ['players', 'drawPile', 'discardPile', 'currentPlayer', 'winner'],
     components: {
         "player-hand": PlayerHand,
         "card-deck": CardDeck,
         "upcoming-player": UpcomingPlayerList 
     },
     methods: {
-        startPlayer: function() {
-            let index = Math.floor(Math.random() * this.playerList.length)
-            this.currentPlayer = this.playerList[index]
-        },
-        nextTurn: function() {
-            const currentIndex = this.playerList.indexOf(this.currentPlayer)
-            if (currentIndex <= (this.playerList.length - 2)) {
-                this.currentPlayer = this.playerList[currentIndex + 1]
-            } else {
-                this.currentPlayer = this.playerList[0]
-            }
-            this.sortCardColors()
-        },
-        sortCardColors: function() {
-                this.currentPlayer.hand.sort(function (a, b) {
-                    return a.color.length - b.color.length
-                })
-        },
-        winnerIs: function() {
-            if (this.currentPlayer.hand.length) {
-                this.nextTurn()
-            } else {
-                this.winner = true
-                // GameService.addWinner(this.currentPlayer.name)
-            }
-        },
         playAgain: function() {
             eventBus.$emit('play-again')
-            this.winner = false
-            this.playerList = []
-            this.remainingCardDeck = []
-            this.discardPile = []
-            this.currentPlayer = null
-            this.selectedCard = null
         }
-        
-    },
-    mounted() {
-        eventBus.$on('new-game', (cards, players, discard) => {
-            this.remainingCardDeck = cards
-            this.playerList = players
-            this.discardPile = discard
-            this.startPlayer()
-            this.sortCardColors()
-        })
-
-        eventBus.$on('selected-card', (card) => {
-            this.selectedCard = card
-            const index = this.currentPlayer.hand.indexOf(this.selectedCard)
-            this.currentPlayer.hand.splice(index, 1)
-            this.discardPile.unshift(this.selectedCard)
-            this.selectedCard = null
-            this.winnerIs()
-        })
-
-        eventBus.$on('draw-card', (card) => {
-            this.currentPlayer.hand.push(card)
-            this.nextTurn()
-        })
-    },
-
+    } 
 }
 </script>
 
