@@ -38,7 +38,8 @@ export default {
     mounted() {
         eventBus.$on('new-game', () => {
             this.gameInProgress = true
-    })
+        })
+    }
 }
 </script>
 

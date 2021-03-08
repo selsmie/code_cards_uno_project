@@ -71,7 +71,7 @@ export default {
         //     this.sortCardColors()
         // })
 
-        eventBus.$on('new-game', (cards, players) => {
+        eventBus.$on('new-game', (cards, players, discard) => {
             this.remainingCardDeck = cards
             this.playerList = players
             this.discardPile = discard
