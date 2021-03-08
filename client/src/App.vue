@@ -50,7 +50,7 @@ export default {
 <style>
 body {
     margin: 0;
-    background-color: #f3baba;
+    background-color: #036931;
 }
 #main {
     display: grid;

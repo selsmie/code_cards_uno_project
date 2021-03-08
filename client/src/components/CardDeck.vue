@@ -23,7 +23,11 @@ export default {
         },
 
         handleDrawCard() {
-            eventBus.$emit("draw-card", this.remainingCardDeck.shift())
+            if (this.remainingCardDeck.length > 0) {
+                eventBus.$emit("draw-card", this.remainingCardDeck.shift())
+            } else {
+                console.log('error')
+            }
         },      
     },
 

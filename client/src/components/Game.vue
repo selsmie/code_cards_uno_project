@@ -79,7 +79,7 @@ export default {
             }
         },
         playAgain: function() {
-            eventBus.$emit('play-again', this.playerList)
+            eventBus.$emit('play-again')
             this.winner = false
             this.playerList = []
             this.remainingCardDeck = []
