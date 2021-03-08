@@ -2,7 +2,7 @@
 <div>
     <form @submit="addPlayer" v-if="players.length < 10">
         <label for="name">Player name: </label>
-        <input type="text" id="name" name="name" v-model="name" required >
+        <input type="text" id="name" name="name" v-model="name" required autofocus>
         <input type="submit" value="Add" id="save"/>
     </form>
     <br>
@@ -28,6 +28,7 @@ export default {
             cards: [],
             name: '',
             players: [],
+            discardPile: [],
         }
     },
     mounted() {
@@ -70,11 +71,17 @@ export default {
             }
         },
 
+        startDiscardPile() {
+            const discardPile = this.cards.splice(-1, 1)
+            this.discardPile = discardPile
+        },
+
         newGame(evt) {
             evt.preventDefault()
             this.shuffle()
+            this.startDiscardPile()
             this.deal()
-            eventBus.$emit('new-game', this.cards, this.players)
+            eventBus.$emit('new-game', this.cards, this.players, this.discardPile)
         }
     },
     components: {
@@ -83,6 +90,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

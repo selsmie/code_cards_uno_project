@@ -1,7 +1,7 @@
 <template>
 <div>
     <ul>
-      <cards-held v-for="(card, index) in hand" :key="index" :card="card"></cards-held>
+      <cards-held v-for="(card, index) in hand" :key="index" :card="card" :topCard="topCard"></cards-held>
     </ul>
 </div>
 
@@ -12,14 +12,14 @@ import CardsHeld from './CardsHeld.vue'
 
 export default {
     name: "player-hand",
-    props: ['hand'],
+    props: ['hand', 'topCard'],
     components: {
         "cards-held": CardsHeld
     },
 }
 </script>
 
-<style>
+<style scoped>
 ul{
     display: flex;
     overflow: scroll;

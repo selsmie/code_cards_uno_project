@@ -4,11 +4,11 @@
             <upcoming-player :current="currentPlayer" :players='playerList'></upcoming-player>
         </div>
         <div class='card-decks'>
-            <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck>
+            <card-deck :remainingCards='remainingCardDeck' :discardCard="discardPile"></card-deck>
         </div>
         <div class='current-player-hand' >
             <p>{{ currentPlayer.name}}'s turn</p>
-            <player-hand :hand="currentPlayer.hand"></player-hand>
+            <player-hand :hand="currentPlayer.hand" :topCard="discardPile[0]"></player-hand>
         </div>
         <div class='action-buttons'>
             <button v-on:click="nextTurn">End Turn</button>
@@ -29,6 +29,7 @@ export default {
         return {
             playerList: [],
             remainingCardDeck: [],
+            discardPile: [],
             currentPlayer: null,
             selectedCard: null,
         }
@@ -70,9 +71,10 @@ export default {
         //     this.sortCardColors()
         // })
 
-        eventBus.$on('new-game', (cards, players) => {
+        eventBus.$on('new-game', (cards, players, discard) => {
             this.remainingCardDeck = cards
             this.playerList = players
+            this.discardPile = discard
             this.startPlayer()
             this.sortCardColors()
         })
@@ -81,6 +83,8 @@ export default {
             this.selectedCard = card
             const index = this.currentPlayer.hand.indexOf(this.selectedCard)
             this.currentPlayer.hand.splice(index, 1)
+            this.discardPile.unshift(this.selectedCard)
+            this.selectedCard = null
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -91,7 +95,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 p {
     color: white;
 }
