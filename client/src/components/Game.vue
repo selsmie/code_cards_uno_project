@@ -12,7 +12,7 @@
         </div>
         <div class='action-buttons'>
             <button>UNO!</button>
-            <button v-on:click="nextTurn">End Turn</button>
+            <!-- <button v-on:click="nextTurn">End Turn</button> -->
         </div>
     </section>
 </template>
@@ -53,7 +53,7 @@ export default {
                 this.currentPlayer = this.playerList[0]
             }
             this.sortCardColors()
-            this.selectedCard = null
+            // this.selectedCard = null
         },
         sortCardColors: function() {
                 this.currentPlayer.hand.sort(function (a, b) {
@@ -76,10 +76,12 @@ export default {
             this.currentPlayer.hand.splice(index, 1)
             this.discardPile.unshift(this.selectedCard)
             this.selectedCard = null
+            this.nextTurn()
         })
 
         eventBus.$on('draw-card', (card) => {
             this.currentPlayer.hand.push(card)
+            this.nextTurn()
         })
     },
 
@@ -96,8 +98,8 @@ export default {
 
 .action-buttons {
     display: flex;
-    justify-content: space-between;
-    padding: 0px 30px;
+    justify-content: center;
+    padding: 0px;
 }
 
 .action-buttons > button {
