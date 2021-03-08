@@ -58,5 +58,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
 }
 </style>
