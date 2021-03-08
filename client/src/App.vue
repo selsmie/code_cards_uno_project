@@ -1,13 +1,9 @@
 <template>
     <main id="main">
-        <header>
             <header-main v-on:click="backHome"></header-main>
-        </header>
-        <player-form/>        
         <section>
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form v-if="gameInProgress === false"></player-form>
-
             <game></game>
         </section>
     </main>
@@ -18,6 +14,7 @@ import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
 import { eventBus } from './main'
+
 export default {
     name: 'App',
     data() {
@@ -39,7 +36,9 @@ export default {
         }
     },
     mounted() {
-        eventBus.$on('start-game', () => this.gameInProgress = true)
+        eventBus.$on('new-game', () => {
+            this.gameInProgress = true
+        })
     }
 }
 </script>
@@ -58,6 +57,6 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 </style>
