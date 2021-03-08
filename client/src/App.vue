@@ -3,8 +3,8 @@
             <header-main v-on:click="backHome"></header-main>
         <section>
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
-            <player-form v-if="gameInProgress === false"></player-form>
-            <game></game>
+            <player-form :players='players' v-if="gameInProgress === false"></player-form>
+            <game :players='players' :drawPile='drawPile' :discardPile='discardPile' :currentPlayer='currentPlayer' :winner='winner'></game>
         </section>
     </main>
 </template>
@@ -13,14 +13,20 @@
 import PlayerForm from './components/PlayerForm.vue'
 import Game from './components/Game.vue'
 import Header from './components/Header.vue'
-import HowToPlay from './components/HowToPlay.vue'
+import GameService from '@/services/GameService'
 import { eventBus } from './main'
 
 export default {
     name: 'App',
     data() {
         return {
-            gameInProgress: null
+            gameInProgress: null,
+            players: [],
+            drawPile: [],
+            discardPile: [],
+            currentPlayer:  null,
+            selectedCard: null,
+            winner: false,
         }
     },
     components: {
@@ -29,26 +35,131 @@ export default {
         "header-main": Header,
         "how-to-play": HowToPlay
     },
+    mounted() {
+        GameService.getCards()
+            .then(originalDeck => this.drawPile = originalDeck)
+
+        eventBus.$on('new-game', () => {
+            this.shuffle()
+            this.startDiscardPile()
+            this.deal()
+            this.startPlayer()
+            this.sortCardColors()
+            this.gameInProgress = true
+        })
+
+        eventBus.$on('play-again', () => {
+            this.gameInProgress = false
+            this.winner = false
+            this.remainingCardDeck = []
+            this.discardPile = []
+            this.currentPlayer = null
+            this.selectedCard = null
+        })
+
+        eventBus.$on('new-player', (name) => {
+            if (!this.players.find(player => player.name === name)) {
+                this.players.push({ name: name, hand: [] })
+            } else {
+                alert("Be original! There can only be 'uno' player with that name.")
+            }
+            })
+
+        eventBus.$on('delete-player', (playerToDelete) => {
+            const i = this.players.findIndex(player => playerToDelete === player)
+            this.players.splice(i, 1)
+        })
+
+        eventBus.$on('selected-card', (card) => {
+            this.selectedCard = card
+            const index = this.currentPlayer.hand.indexOf(this.selectedCard)
+            this.currentPlayer.hand.splice(index, 1)
+            this.discardPile.unshift(this.selectedCard)
+            this.selectedCard = null
+            this.winnerIs()
+        })
+
+        eventBus.$on('draw-card', (card) => {
+            this.currentPlayer.hand.push(card)
+            this.nextTurn()
+        })
+
+        eventBus.$on('draw-pile-empty', () => {
+            this.discardPile.map((card, index) => {
+                if (index > 0) {
+                    this.drawPile.push(card)
+                }
+            })
+            this.discardPile.splice(1, this.discardPile.length)
+        })
+    },
     methods: {
         backHome: function() {
             this.gameInProgress = null
         },
         setup: function() {
             this.gameInProgress = false
+        },
+
+        shuffle() {
+            for (let i = this.drawPile.length - 1; i > 0; i--) {
+                let randomIndex = Math.floor(Math.random() * i)
+                let temp = this.drawPile[i]
+                this.$set(this.drawPile, i, this.drawPile[randomIndex])
+                this.$set(this.drawPile, randomIndex, temp)
+            }
+        },
+
+        deal() {
+            for (const player of this.players) {
+                const newHand = this.drawPile.splice(-7, 7)
+                this.$set(player, 'hand', newHand)
+            }
+        },
+
+        startDiscardPile() {
+            this.discardPile = this.drawPile.splice(-1, 1)
+        },
+
+        startPlayer: function() {
+            let index = Math.floor(Math.random() * this.players.length)
+            this.currentPlayer = this.players[index]
+        },
+
+        nextTurn: function() {
+            const currentIndex = this.players.indexOf(this.currentPlayer)
+            if (currentIndex <= (this.players.length - 2)) {
+                this.currentPlayer = this.players[currentIndex + 1]
+            } else {
+                this.currentPlayer = this.players[0]
+            }
+            this.sortCardColors()
+        },
+
+        sortCardColors: function() {
+                this.currentPlayer.hand.sort(function (a, b) {
+                    return a.color.length - b.color.length
+                })
+        },
+
+        winnerIs: function() {
+            if (this.currentPlayer.hand.length) {
+                this.nextTurn()
+            } else {
+                this.winner = true
+                // GameService.addWinner(this.currentPlayer.name)
+            }
         }
-    },
-    mounted() {
-        eventBus.$on('new-game', () => {
-            this.gameInProgress = true
-        })
     }
-}
+    }
+
+
 </script>
 
 <style>
 body {
     margin: 0;
-    background-color: #f3baba;
+    background-color: #036931;
 }
 #main {
     display: grid;

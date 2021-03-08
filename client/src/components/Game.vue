@@ -1,20 +1,29 @@
 <template>
-    <section v-if='currentPlayer'>
-        <div class='player-card-counts'>
-            <upcoming-player :current="currentPlayer" :players='playerList'></upcoming-player>
-        </div>
-        <div class='card-decks'>
-            <card-deck :remainingCards='remainingCardDeck' :discardCard="discardPile"></card-deck>
-        </div>
-        <div class='current-player-hand' >
-            <p>{{ currentPlayer.name}}'s turn</p>
-            <player-hand :hand="currentPlayer.hand" :topCard="discardPile[0]"></player-hand>
-        </div>
-        <div class='action-buttons'>
-            <button>UNO!</button>
-            <!-- <button v-on:click="nextTurn">End Turn</button> -->
-        </div>
+<div>
+    <main v-if='!winner'>
+        <section v-if='currentPlayer'>
+            <div class='player-card-counts'>
+                <upcoming-player :current="currentPlayer" :players='players'></upcoming-player>
+            </div>
+            <div class='card-decks'>
+                <card-deck :drawPile='drawPile' :discardPile="discardPile"></card-deck>
+            </div>
+            <div class='current-player-hand' >
+                <p>{{ currentPlayer.name}}'s turn</p>
+                <player-hand :hand="currentPlayer.hand" :topCard="discardPile[0]"></player-hand>
+            </div>
+            <div class='action-buttons'>
+                <!-- <button v-if='currentPlayer.hand.length === 1'>UNO!</button> -->
+            </div>
+        </section>
+    </main>
+    <section v-if='winner'>
+        <h1>{{ currentPlayer.name }} Wins!</h1>
+        <button v-on:click='playAgain'>Play again?</button>
     </section>
+</div>
+    
+    
 </template>
 
 <script>
@@ -22,69 +31,21 @@ import { eventBus } from '../main.js'
 
 import PlayerHand from './PlayerHand.vue'
 import CardDeck from './CardDeck.vue'
-import UpcomingPlayerList from './UpcomingPlayerList'
+import UpcomingPlayerList from './UpcomingPlayerList.vue'
 
 export default {
     name: 'game',
-    data() {
-        return {
-            playerList: [],
-            remainingCardDeck: [],
-            discardPile: [],
-            currentPlayer: null,
-            selectedCard: null,
-        }
-    },
+    props: ['players', 'drawPile', 'discardPile', 'currentPlayer', 'winner'],
     components: {
         "player-hand": PlayerHand,
         "card-deck": CardDeck,
         "upcoming-player": UpcomingPlayerList 
     },
     methods: {
-        startPlayer: function() {
-            let index = Math.floor(Math.random() * this.playerList.length)
-            this.currentPlayer = this.playerList[index]
-        },
-        nextTurn: function() {
-            const currentIndex = this.playerList.indexOf(this.currentPlayer)
-            if (currentIndex <= (this.playerList.length - 2)) {
-                this.currentPlayer = this.playerList[currentIndex + 1]
-            } else {
-                this.currentPlayer = this.playerList[0]
-            }
-            this.sortCardColors()
-            // this.selectedCard = null
-        },
-        sortCardColors: function() {
-                this.currentPlayer.hand.sort(function (a, b) {
-                    return a.color.length - b.color.length
-                })
-        },
-    },
-    mounted() {
-        eventBus.$on('new-game', (cards, players, discard) => {
-            this.remainingCardDeck = cards
-            this.playerList = players
-            this.discardPile = discard
-            this.startPlayer()
-            this.sortCardColors()
-        })
-
-        eventBus.$on('selected-card', (card) => {
-            this.selectedCard = card
-            const index = this.currentPlayer.hand.indexOf(this.selectedCard)
-            this.currentPlayer.hand.splice(index, 1)
-            this.discardPile.unshift(this.selectedCard)
-            this.selectedCard = null
-            this.nextTurn()
-        })
-
-        eventBus.$on('draw-card', (card) => {
-            this.currentPlayer.hand.push(card)
-            this.nextTurn()
-        })
-    },
-
+        playAgain: function() {
+            eventBus.$emit('play-again')
+        }
+    } 
 }
 </script>
 

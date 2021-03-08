@@ -2,7 +2,7 @@
   <div>
       <p>Name: {{ player.name }}
           <span>
-              <button v-on:click="handleDelete">Remove</button>
+              <button v-on:click="handleDelete" id='test'>X</button>
           </span>
       </p>
   </div>
@@ -25,6 +25,13 @@ export default {
 
 
 
-<style>
-
+<style scoped>
+#test {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    color: black;
+    font-weight: bold;
+    background-color: red;
+}
 </style>

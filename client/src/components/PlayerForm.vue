@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class='form'>
     <form @submit="addPlayer" v-if="players.length < 10">
         <label for="name">Player name: </label>
         <input type="text" id="name" name="name" v-model="name" required autofocus>
@@ -17,79 +17,49 @@
 </template>
 
 <script>
-import { eventBus } from '@/main'
-import GameService from '@/services/GameService';
+import { eventBus } from '@/main';
 import AddedPlayers from '@/components/AddedPlayers';
 
 export default {
     name: 'player-form',
     data() {
         return {
-            cards: [],
             name: '',
-            players: [],
-            discardPile: [],
         }
     },
-    mounted() {
-        GameService.getCards()
-        .then(cards => this.cards = cards)
-
-        eventBus.$on('delete-player', (playerToDelete) => {
-            const i = this.players.findIndex(player => player === playerToDelete)
-            this.players.splice(i, 1)
-        })
+    props: ['players'],
+    components: {
+        'added-players': AddedPlayers
     },
 
     methods: {
         addPlayer(evt) {
             evt.preventDefault()
-            if (!this.players.find(player => player.name === this.name)) {
-                this.players.push({
-                    name: this.name,
-                    hand: []
-                })
-                this.name = ''
-            } else {
-                alert("Be original! There can only be 'uno' player with that name.")
-            }
+            eventBus.$emit('new-player', this.name)
+            this.name = ''
         },
 
-        shuffle() {
-            for (let i = this.cards.length - 1; i > 0; i--) {
-                let randomIndex = Math.floor(Math.random() * i)
-                let temp = this.cards[i]
-                this.$set(this.cards, i, this.cards[randomIndex])
-                this.$set(this.cards, randomIndex, temp)
-            }
-        },
-
-        deal() {
-            for (const player of this.players) {
-                const newHand = this.cards.splice(-7, 7)
-                this.$set(player, 'hand', newHand)
-            }
-        },
-
-        startDiscardPile() {
-            const discardPile = this.cards.splice(-1, 1)
-            this.discardPile = discardPile
-        },
-
-        newGame(evt) {
-            evt.preventDefault()
-            this.shuffle()
-            this.startDiscardPile()
-            this.deal()
-            eventBus.$emit('new-game', this.cards, this.players, this.discardPile)
+        newGame() {
+            eventBus.$emit('new-game')
         }
     },
-    components: {
-        'added-players': AddedPlayers
-    }
+
 }
 </script>
 
 <style scoped>
+.form {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+}
 
+.form > section {
+    display: grid;
+}
+
+.form > section > button {
+    height: 30px;
+    border-radius: 12px;
+}
 </style>
