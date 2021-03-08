@@ -1,5 +1,5 @@
 <template>
-    <li :class='card ? card.color: null' id='cards-held' v-on:click='select'>{{ card.number }}</li>
+    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>{{ card.number }}</li>
 </template>
 
 <script>
@@ -7,33 +7,14 @@ import { eventBus } from '../main.js'
 
 export default {
     name: "cards-held",
-    props: ['card'],
-    data() {
-        return {
-            selectedCard: null,
-            topCard: null,
-        }
-    },
+
+    props: ['card', 'topCard'],
     methods: {
-        select: function() {
-            if (this.card.color === this.topCard.color || this.card.number == this.topCard.number) {
-                this.selectedCard = this.card
-                eventBus.$emit('selected-card', this.selectedCard)
-                this.selectedCard = null
+        selectedCard: function() {
+            if (this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+            eventBus.$emit('selected-card', this.card)
             }
         }
-    },
-    mounted() {
-        eventBus.$on('top-card', (card) => {
-            this.topCard = card
-        })
-    },
-    computed: {
-        // checkTopCard: function() {
-        //     eventBus.$on('top-card', (card) => {
-        //         this.topCard = card
-        //     })
-        // }
     }
 }
 </script>

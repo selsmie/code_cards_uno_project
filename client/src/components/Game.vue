@@ -4,11 +4,11 @@
             <upcoming-player :current="currentPlayer" :players='playerList'></upcoming-player>
         </div>
         <div class='card-decks'>
-            <card-deck :remainingCards='remainingCardDeck' :selectedCard='selectedCard'></card-deck>
+            <card-deck :remainingCards='remainingCardDeck' :discardCard="discardPile"></card-deck>
         </div>
         <div class='current-player-hand' >
             <p>{{ currentPlayer.name}}'s turn</p>
-            <player-hand :hand="currentPlayer.hand"></player-hand>
+            <player-hand :hand="currentPlayer.hand" :topCard="discardPile[0]"></player-hand>
         </div>
         <div class='action-buttons'>
             <button>UNO!</button>
@@ -30,6 +30,7 @@ export default {
         return {
             playerList: [],
             remainingCardDeck: [],
+            discardPile: [],
             currentPlayer: null,
             selectedCard: null,
         }
@@ -61,9 +62,20 @@ export default {
         },
     },
     mounted() {
-        eventBus.$on('new-game', (cards, players) => {
+        // eventBus.$on('card-list', (cardList) => {
+        //     this.remainingCardDeck = cardList
+        // })
+
+        // eventBus.$on('player-list', (playerList) => {
+        //     this.playerList = playerList
+        //     this.startPlayer()
+        //     this.sortCardColors()
+        // })
+
+        eventBus.$on('new-game', (cards, players, discard) => {
             this.remainingCardDeck = cards
             this.playerList = players
+            this.discardPile = discard
             this.startPlayer()
             this.sortCardColors()
         })
@@ -72,6 +84,8 @@ export default {
             this.selectedCard = card
             const index = this.currentPlayer.hand.indexOf(this.selectedCard)
             this.currentPlayer.hand.splice(index, 1)
+            this.discardPile.unshift(this.selectedCard)
+            this.selectedCard = null
         })
 
         eventBus.$on('draw-card', (card) => {

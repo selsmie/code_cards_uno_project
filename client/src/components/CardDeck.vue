@@ -10,52 +10,51 @@ import { eventBus } from '../main.js'
 
 export default {
     name: 'CardDeck',
-    props: ['remainingCards', 'selectedCard'],
+    props: ['remainingCards', 'discardCard'],
     data() {
         return {
             remainingCardDeck: [],
-            discardPile: [],
         }
     },  
     methods: {
+        loadCards() {
+            this.remainingCardDeck = this.remainingCards
+        },
+
         handleDrawCard() {
             eventBus.$emit("draw-card", this.remainingCardDeck.shift())
         },
 
-        handleInitialCard() {
-            if(this.discardPile.length === 0) {
-                this.discardPile.push(this.remainingCardDeck[0])
-                this.remainingCardDeck.splice(0, 1)
-            } else {
-                return
-            }
-        },
-        loadCards() {
-            this.remainingCardDeck = this.remainingCards
-        },
-        // sendTopCard: function() {
-        //     eventBus.$emit("top-card", this.discardPile[0])
-        // }  
+        // handlePlaceCard() {
+        //     this.discardPile.unshift(this.selectedCard)
+        // },
+
+        // handleInitialCard() {
+        //     this.discardPile.unshift(this.remainingCardDeck[0])
+        //     this.remainingCardDeck.splice(0, 1)
+        // },
+        // topCard() {
+        //     eventBus.$emit("top-card", this.discardPile[1])
+        // },
+        
     },
 
     mounted() {
         this.loadCards()
-        this.handleInitialCard()
-        // this.sendTopCard()
-
-
-        eventBus.$on('selected-card', (card) => this.discardPile.unshift(card))
+        // this.handleInitialCard();
+        // this.handlePlaceCard();
+        // this.topCard();
     },
+
     computed: {
-        sendTopCardAuto: function() {
-            eventBus.$emit("top-card", this.discardPile[0])
-        } 
-    },
-
-    
+        showTopCard: function() {
+            return this.discardCard[0].color + " " + this.discardCard[0].number
+        }
+    }
 }
 
 </script>
+
 
 <style>
 .card-decks {
@@ -92,6 +91,7 @@ export default {
 #top-card.green {
     background-color: green;
 }
+
 
 #top-card.yellow {
     background-color: yellow;
