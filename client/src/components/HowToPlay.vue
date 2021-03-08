@@ -41,13 +41,14 @@
 </template>
 
 <script>
-import { navOpen, navToggle, howToPlayToggle } from '@/store.js'
+import { navToggle, howToPlayToggle } from '@/store.js'
 
 export default {
     "name": "how-to-play",
     methods: {
         closePopOut() {
             howToPlayToggle.toggleHowToPlay()
+            navToggle.toggleNav()
         }
     },
 }
@@ -58,7 +59,7 @@ export default {
     position: absolute;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(128, 255, 0, 0.616);
+    background-color: rgba(43, 43, 43, 0.432);
     z-index: 999;
 }
 .pop-out-frame {
