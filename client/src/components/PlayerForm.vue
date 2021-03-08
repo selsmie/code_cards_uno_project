@@ -43,11 +43,15 @@ export default {
     methods: {
         addPlayer(evt) {
             evt.preventDefault()
-            this.players.push({
-                name: this.name,
-                hand: []
-            })
-            this.name = ''
+            if (!this.players.find(player => player.name === this.name)) {
+                this.players.push({
+                    name: this.name,
+                    hand: []
+                })
+                this.name = ''
+            } else {
+                alert("Be original! There can only be 'uno' player with that name.")
+            }
         },
 
         shuffle() {
