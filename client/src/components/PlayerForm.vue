@@ -6,12 +6,13 @@
         <input type="submit" value="Add" id="save"/>
     </form>
     <br>
-    <button @click="newGame" type="button" class="new-game-btn">Start new game!</button>
-
     <section>
-        <added-players :playerList="players"/>
-    </section>
+        <button v-if='players.length > 1' @click="newGame" type="button" class="new-game-btn">Start new game!</button>
 
+        <section>
+            <added-players :playerList="players"/>
+        </section>
+    </section>
 </div>
 </template>
 
