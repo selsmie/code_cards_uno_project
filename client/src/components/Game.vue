@@ -75,12 +75,17 @@ export default {
                 this.nextTurn()
             } else {
                 this.winner = true
-                GameService.addWinner(currentPlayer.name)
+                // GameService.addWinner(this.currentPlayer.name)
             }
         },
         playAgain: function() {
             eventBus.$emit('play-again', this.playerList)
             this.winner = false
+            this.playerList = []
+            this.remainingCardDeck = []
+            this.discardPile = []
+            this.currentPlayer = null
+            this.selectedCard = null
         }
         
     },

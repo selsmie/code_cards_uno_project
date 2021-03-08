@@ -39,6 +39,22 @@ export default {
             const i = this.players.findIndex(player => player === playerToDelete)
             this.players.splice(i, 1)
         })
+
+        eventBus.$on('play-again', (playerList) => {
+            // const importedPlayers = [] 
+            // console.log('import before', importedPlayers)
+            // for (const player of playerList) {
+            //         importedPlayers.push({name: player.name, hand: []})
+            // }
+            // console.log('import after', importedPlayers)
+            // this.players.push(...importedPlayers)
+            // console.log('players', this.players)
+            console.log(playerList)
+            playerList.forEach((player) => {
+                player.hand = []
+            })
+            this.players.push(...playerList)
+        })
     },
 
     methods: {
