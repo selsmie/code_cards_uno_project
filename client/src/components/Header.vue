@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <header>
         <div id="header">
             <button id="menu-button" type="button" v-on:click.prevent="showMenu">Click Me</button>
             <p id="logo">Uno Logo</p>
@@ -8,7 +8,7 @@
         <div>
             <side-panel></side-panel>
         </div>
-    </div>
+    </header>
 </template>
 
 <script>

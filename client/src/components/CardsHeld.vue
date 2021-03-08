@@ -1,16 +1,26 @@
 <template>
-    <li :class='card ? card.color: null'>{{ card.number }}</li>
+    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>{{ card.number }}</li>
 </template>
 
 <script>
+import { eventBus } from '../main.js'
+
 export default {
     name: "cards-held",
-    props: ['card']
+
+    props: ['card', 'topCard'],
+    methods: {
+        selectedCard: function() {
+            if (this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+            eventBus.$emit('selected-card', this.card)
+            }
+        }
+    }
 }
 </script>
 
-<style scoped>
-li{
+<style>
+#cards-held {
     list-style: none;
     height: 50px;
     padding: 5px 13px;
@@ -22,6 +32,7 @@ li{
     font-size: 25px;
     color: white;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .red {
@@ -36,7 +47,7 @@ li{
     background-color: green;
 }
 
-.yellow {
+#cards-held.yellow {
     background-color: yellow;
     color: black;
 }
