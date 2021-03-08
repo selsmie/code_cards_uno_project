@@ -9,3 +9,15 @@ export const mutations = {
         store.isNavOpen = !store.isNavOpen
     }
 };
+
+
+
+export const howToPlay = Vue.observable({
+    isHowToPlayOpen: false
+});
+
+export const howToPlayToggle = {
+    toggleHowToPlay() {
+        howToPlay.isHowToPlayOpen = !howToPlay.isHowToPlayOpen
+    }
+};

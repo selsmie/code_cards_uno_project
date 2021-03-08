@@ -5,17 +5,17 @@
             <div class="side-panel-menu" v-if="isSidePanelOpen">
                 <a class="close-button" v-on:click="closeSidePanel">X</a>
                 <ul class="menu-list">
-                    <li class="menu-item"><a class="menu-item-link" href="">HOW TO PLAY</a></li>
-                    <li class="menu-item"><button>HOW TO PLAY</button></li>
+                    <li class="menu-item" v-on:click.prevent="openHowToPlay"><button>HOW TO PLAY</button></li>
                 </ul>
             </div>
         </transition>
+        <how-to-play v-if="isHowToPlayOpen" v-on:click="openHowToPlay"></how-to-play>
     </div>
 </template>
 
 <script>
 import HowToPlay from './HowToPlay.vue'
-import { store, mutations } from "@/store.js"
+import { store, mutations, howToPlay, howToPlayToggle } from "@/store.js"
 
 export default {
     name: "side-panel",
@@ -23,14 +23,19 @@ export default {
         "how-to-play": HowToPlay
     },
     methods: {
-        closeSidePanel: mutations.toggleNav
+        closeSidePanel: mutations.toggleNav,
+        openHowToPlay() {
+            howToPlayToggle.toggleHowToPlay()
+        }
     },
     computed: {
         isSidePanelOpen() {
             return store.isNavOpen
+        },
+        isHowToPlayOpen() {
+            return howToPlay.isHowToPlayOpen
         }
     }
-
 }
 </script>
 
@@ -87,11 +92,6 @@ export default {
 
 .menu-item {
     padding: 0 0 20px 0;
-}
-
-.menu-item-link {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
 }
 
 </style>>

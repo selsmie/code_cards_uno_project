@@ -35,14 +35,21 @@
                     varius.
                     </p>
                 </article>
-            <button class="button button-position">Close</button>
+            <button class="button button-position" v-on:click.prevent="closePopOut">Close</button>
         </div>
     </div>
 </template>
 
 <script>
-export default {
+import { howToPlayToggle } from '@/store.js'
 
+export default {
+    "name": "how-to-play",
+    methods: {
+        closePopOut() {
+            howToPlayToggle.toggleHowToPlay()
+        }
+    },
 }
 </script>
 
