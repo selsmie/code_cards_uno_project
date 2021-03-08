@@ -12,12 +12,9 @@
                 <p>{{ currentPlayer.name}}'s turn</p>
                 <player-hand :hand="currentPlayer.hand" :topCard="discardPile[0]"></player-hand>
             </div>
-            <div class='action-buttons'>
-                <!-- <button v-if='currentPlayer.hand.length === 1'>UNO!</button> -->
-            </div>
         </section>
     </main>
-    <section v-if='winner'>
+    <section v-if='winner' class='winner'>
         <h1>{{ currentPlayer.name }} Wins!</h1>
         <button v-on:click='playAgain'>Play again?</button>
     </section>
@@ -57,15 +54,13 @@ export default {
     margin: 5px;
 }
 
-.action-buttons {
-    display: flex;
+.winner {
+    display: grid;
     justify-content: center;
-    padding: 0px;
 }
 
-.action-buttons > button {
-    width: 80px;
-    height: 60px;
+.winner > button {
+    height: 50px;
     border-radius: 12px;
 }
 

@@ -19,9 +19,10 @@ export default {
 <style>
 #player-card-count {
     display: grid;
-    border: 1px black solid;
+    border: 1px white solid;
     width: max-content;
-    padding: 5px;
+    padding: 10px;
     margin: 0px 30px;
+    border-radius: 8px;
 }
 </style>

@@ -159,6 +159,7 @@ export default {
 body {
     margin: 0;
     background-color: #036931;
+    color: white;
 }
 #main {
     display: grid;

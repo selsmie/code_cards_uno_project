@@ -53,6 +53,11 @@ export default {
   margin: 0;
   justify-self: center;
   align-self: center;
+  font-size: 25px;
+  font-style: italic;
+  border-radius: 12px;
+  border: 3px solid white;
+  padding: 5px;
 }
 
 #player-playing {
