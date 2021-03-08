@@ -1,6 +1,6 @@
 <template>
   <div>
-      <p>Top card: {{discardPile[1].number}} - {{discardPile[1].color}}</p>
+      <p>Top Card: {{showTopCard}}</p>
       <button class="draw-card" v-on:click="handleDrawCard">Draw Card</button>
   </div>
 </template>
@@ -10,47 +10,51 @@ import { eventBus } from '../main.js'
 
 export default {
     name: 'CardDeck',
-    props: ['remainingCards', 'selectedCard'],
+    props: ['remainingCards', 'discardCard'],
     data() {
         return {
             remainingCardDeck: [],
-            discardPile: [],
         }
         
     },  
     methods: {
+        loadCards() {
+            this.remainingCardDeck = this.remainingCards
+        },
+
         handleDrawCard() {
             eventBus.$emit("draw-card", this.remainingCardDeck.shift())
         },
 
-        handlePlaceCard() {
-            this.discardPile.unshift(this.selectedCard)
-        },
+        // handlePlaceCard() {
+        //     this.discardPile.unshift(this.selectedCard)
+        // },
 
-        handleInitialCard() {
-            this.discardPile.unshift(this.remainingCardDeck[0])
-            this.remainingCardDeck.splice(0, 1)
-        },
-        topCard() {
-            eventBus.$emit("top-card", this.discardPile[1])
-        },
-        loadCards() {
-            this.remainingCardDeck = this.remainingCards
-        }
+        // handleInitialCard() {
+        //     this.discardPile.unshift(this.remainingCardDeck[0])
+        //     this.remainingCardDeck.splice(0, 1)
+        // },
+        // topCard() {
+        //     eventBus.$emit("top-card", this.discardPile[1])
+        // },
+        
     },
 
     mounted() {
         this.loadCards()
-        this.handleInitialCard();
-        this.handlePlaceCard();
-        this.topCard();
-  
-    }
+        // this.handleInitialCard();
+        // this.handlePlaceCard();
+        // this.topCard();
+    },
 
-    
+    computed: {
+        showTopCard: function() {
+            return this.discardCard[0].color + " " + this.discardCard[0].number
+        }
+    }
 }
 
-</script>
+</script scoped>
 
 <style>
 
