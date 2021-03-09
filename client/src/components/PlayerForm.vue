@@ -26,6 +26,7 @@ export default {
             name: '',
         }
     },
+
     props: ['players'],
     components: {
         'added-players': AddedPlayers
@@ -42,7 +43,6 @@ export default {
             eventBus.$emit('new-game')
         }
     },
-
 }
 </script>
 

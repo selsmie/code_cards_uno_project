@@ -21,3 +21,15 @@ export const howToPlayToggle = {
         howToPlay.isHowToPlayOpen = !howToPlay.isHowToPlayOpen
     }
 };
+
+
+
+export const leaderboardMenu = Vue.observable({
+    isLeaderboardMenuOpen: false
+});
+
+export const leaderboardToggle = {
+    toggleLeaderboard() {
+        leaderboardMenu.isLeaderboardMenuOpen = !leaderboardMenu.isLeaderboardMenuOpen
+    }
+};
