@@ -2,6 +2,10 @@ use code_cards_uno_project;
 
 db.dropDatabase();
 
+db.leaderboard.insertMany([
+    
+])
+
 db.cards.insertMany([
   {
       number: "0",

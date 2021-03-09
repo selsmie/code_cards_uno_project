@@ -89,12 +89,16 @@ export default {
             this.currentPlayer.hand.splice(index, 1)
             this.discardPile.unshift(this.selectedCard)
             this.selectedCard = null
-            this.winnerIs()
-            this.handlePlus4Card()
-            this.handlePlus2Card()
-            this.handleSkipCard()
-            this.handleChangeDirectionCard()
-            this.handleChangeColorCard()
+            if (this.discardPile[0].number === "🎨") {
+                return
+            } else {
+                this.handleChangeDirectionCard()
+                this.winnerIs()
+                this.handlePlus4Card()
+                this.handlePlus2Card()
+                this.handleSkipCard()
+            }
+     
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -218,20 +222,10 @@ export default {
         },
 
         handleChangeDirectionCard() {
-            const currentIndex = this.players.indexOf(this.currentPlayer)
             if (this.discardPile[0].number === "↩️") {
-                this.currentPlayer = this.players[currentIndex - 1]
                 this.players.reverse()
-                this.nextTurn()
             }
         },
-
-        handleChangeColorCard() {
-            const currentIndex = this.players.indexOf(this.currentPlayer)
-            if (this.discardPile[0].number === "🎨") {
-                this.currentPlayer = this.players[currentIndex - 1]
-            }
-        }
     }
 }
 </script>
