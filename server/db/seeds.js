@@ -417,6 +417,26 @@ db.cards.insertMany([
   {
       number: "CD",
       color: "blue"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "CC",
+      color: "black"
+  },
+  {
+      number: "CC",
+      color: "black"
+  },
+  {
+      number: "CC",
+      color: "black"
+  },
+  {
+      number: "CC",
+      color: "black"
   }
 ]
 )

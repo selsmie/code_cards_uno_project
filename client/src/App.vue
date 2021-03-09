@@ -80,6 +80,7 @@ export default {
             this.handlePlus2Card()
             this.handleSkipCard()
             this.handleChangeDirectionCard()
+            this.handleChangeColorCard()
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -188,6 +189,13 @@ export default {
                 this.nextTurn()
             }
         },
+
+        handleChangeColorCard() {
+            const currentIndex = this.players.indexOf(this.currentPlayer)
+            if (this.discardPile[0].number === "CC") {
+                this.currentPlayer = this.players[currentIndex - 1]
+            }
+        }
     }
 }
 </script>
