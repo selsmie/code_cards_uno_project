@@ -51,9 +51,9 @@ export default {
 	cursor: pointer;
 	outline: inherit;
 	height: 40px;
-    width: 50px;
+	width: 50px;
 	align-self: center;
-    margin-left: 25px;
+	margin-left: 1rem;
 }
 
 .fa-2x {

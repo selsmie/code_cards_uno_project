@@ -6,7 +6,7 @@
                 <a class="close-button" v-on:click="closeSidePanel">X</a>
                 <ul class="menu-list">
                     <li class="menu-item"><button v-on:click.prevent="openHowToPlay">HOW TO PLAY</button></li>
-                    <li class="menu-item"><button v-on:click.prevent="openLeaderboard">Leaderboard</button></li>
+                    <li class="menu-item"><button v-on:click.prevent="openLeaderboard">LEADERBOARD</button></li>
                 </ul>
             </div>
         </transition>
@@ -108,4 +108,13 @@ export default {
     padding: 0 0 20px 0;
 }
 
+button {
+    background: transparent;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
 </style>>
