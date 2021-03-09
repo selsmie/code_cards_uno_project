@@ -23,10 +23,10 @@ export default{
         .then(res => res.json());
     },
 
-    updatePlayerCounts(players) { // add 1 playCount to each player
-        return fetch(baseLeaderboardURL, {
+    updatePlayerCounts(player, id) { // add 1 playCount to each player
+        return fetch(baseLeaderboardURL + id, {
             method: 'PUT',
-            body: JSON.stringify(players),
+            body: JSON.stringify(player),
             headers: {
                 'Content-Type': 'application/json'
             }

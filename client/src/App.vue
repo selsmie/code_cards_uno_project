@@ -36,14 +36,15 @@ export default {
         "header-main": Header,
     },
     mounted() {
-        GameService.getCards()
-            .then(originalDeck => this.drawPile = originalDeck)
+        this.getCardsAndLeaders()
+        // GameService.getCards()
+        //     .then(originalDeck => this.drawPile = originalDeck)
 
-        GameService.getLeaderboard()
-            .then(leaderboard => this.leaderboard = leaderboard)
+        // GameService.getLeaderboard()
+        //     .then(leaderboard => this.leaderboard = leaderboard)
 
         eventBus.$on('new-game', () => {
-            this.shuffle()
+            // this.shuffle()
             this.startDiscardPile()
             this.deal()
             this.startPlayer()
@@ -54,7 +55,7 @@ export default {
         eventBus.$on('play-again', () => {
             this.gameInProgress = false
             this.winner = false
-            this.drawPile = []
+            this.getCardsAndLeaders()
             this.discardPile = []
             this.currentPlayer = null
             this.selectedCard = null
@@ -138,6 +139,14 @@ export default {
             this.gameInProgress = false
         },
 
+        getCardsAndLeaders: function() {
+            GameService.getCards()
+                .then(originalDeck => this.drawPile = originalDeck)
+
+            GameService.getLeaderboard()
+                .then(leaderboard => this.leaderboard = leaderboard)
+        },
+
         shuffle() {
             for (let i = this.drawPile.length - 1; i > 0; i--) {
                 let randomIndex = Math.floor(Math.random() * i)
@@ -149,7 +158,7 @@ export default {
 
         deal() {
             for (const player of this.players) {
-                const newHand = this.drawPile.splice(-7, 7)
+                const newHand = this.drawPile.splice(-7, 1)
                 this.$set(player, 'hand', newHand)
             }
         },
@@ -186,7 +195,10 @@ export default {
                 this.winner = true
                 this.addPlayCount()
                 this.addWinCount()
-                GameService.updatePlayerCounts(this.players)
+                this.players.forEach((player) => {
+                    GameService.updatePlayerCounts(player, player._id)
+                })
+                
             }
         },
 
