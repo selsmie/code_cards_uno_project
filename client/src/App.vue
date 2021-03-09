@@ -62,8 +62,8 @@ export default {
 
         eventBus.$on('new-player', (name) => {
             if (!this.players.find(player => player.name === name)) {
-                if (this.leaderboard.find(name => player.name === name)) {
-                    const playerToAdd = this.leaderboard.find(name => player.name === name)
+                if (this.leaderboard.find(player => player.name === name)) {
+                    const playerToAdd = this.leaderboard.find(player => player.name === name)
                     this.players.push(playerToAdd)
                 } 
                 else {

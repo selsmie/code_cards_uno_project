@@ -13,7 +13,7 @@ MongoClient.connect('mongodb://localhost:27017')
         const cardsCollection = db.collection('cards');
         const cardsRouter = createRouter(cardsCollection);
         app.use('/api/code_cards/cards', cardsRouter);
-        const leaderboardCollection = db.collection('leaderboardCollection');
+        const leaderboardCollection = db.collection('leaderboard');
         const leaderboardRouter = createRouter(leaderboardCollection);
         app.use('/api/code_cards/leaderboard', leaderboardRouter);
     })
