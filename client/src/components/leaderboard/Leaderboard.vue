@@ -31,9 +31,6 @@ export default {
             .reverse()
         }
     },
-    // computed: {
-        
-    // },
     mounted() {
         this.getLeaderboard()
     },

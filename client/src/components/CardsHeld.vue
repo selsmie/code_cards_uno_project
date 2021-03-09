@@ -1,5 +1,5 @@
 <template>
-    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>{{ card.number }}</li>
+    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>{{ cardGraphic }}</li>
 </template>
 
 <script>
@@ -15,6 +15,22 @@ export default {
             eventBus.$emit('selected-card', this.card)
             } else if (this.topCard.color === "black") {
                 eventBus.$emit('selected-card', this.card)
+            }
+        }
+    },
+    //  <font-awesome-icon icon="ban" size="2x"/>
+    //         <font-awesome-icon icon="retweet" size="2x"/>
+    //         <font-awesome-icon icon="palette" size="2x"/>
+    computed: {
+        cardGraphic: function () {
+           if (this.card.number === "🚫") {
+                return "50"
+            } else if (this.card.number === "↩️") {
+                return "60"
+            } else if (this.card.number === "🎨") {
+                return "70"
+            } else {
+                return this.card.number
             }
         }
     }
