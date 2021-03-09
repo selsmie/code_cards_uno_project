@@ -239,8 +239,7 @@ export default {
                 }
             }
         },
-
-<<<<<<< HEAD
+        
         handleSkipCard() {
             if (this.discardPile[0].number === "🚫") {
                 this.nextTurn()
@@ -264,8 +263,6 @@ export default {
         }
     }
 }
-=======
->>>>>>> develop
 </script>
 
 <style>
