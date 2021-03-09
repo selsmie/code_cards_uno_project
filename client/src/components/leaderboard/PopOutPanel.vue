@@ -2,17 +2,21 @@
     <div class="pop-out-window">
         <div class="pop-out-frame pop-out-grid">
             <h1>Leaderboard</h1>
-
+            <leaderboard class="leaderboard"></leaderboard>
             <button class="button button-position" v-on:click.prevent="closePopOut">Close</button>
         </div>
     </div>
 </template>
 
 <script>
+import Leaderboard from '@/components/leaderboard/Leaderboard.vue'
 import { navToggle, leaderboardToggle} from '@/store.js'
 
 export default {
-    "name": "leaderboard",
+    name: "pop-out-panel",
+    components: {
+      "leaderboard": Leaderboard  
+    },
     methods: {
         closePopOut() {
             leaderboardToggle.toggleLeaderboard()
@@ -55,11 +59,11 @@ h1 {
     color: white;
 }
 
-/* #how-to-play-instructions {
+.leaderboard {
     grid-column-start: 2;
     grid-row-start: 2;
-    overflow: scroll;
-} */
+    /* overflow: scroll; */
+}
 
 p {
     justify-self: center;

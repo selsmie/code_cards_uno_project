@@ -27,7 +27,6 @@ export default {
             currentPlayer:  null,
             selectedCard: null,
             winner: false,
-            leaderboard: [],
         }
     },
     components: {
