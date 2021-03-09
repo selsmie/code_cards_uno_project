@@ -35,16 +35,12 @@ export default {
         "game": Game,
         "header-main": Header,
     },
+
     mounted() {
         this.getCardsAndLeaders()
-        // GameService.getCards()
-        //     .then(originalDeck => this.drawPile = originalDeck)
-
-        // GameService.getLeaderboard()
-        //     .then(leaderboard => this.leaderboard = leaderboard)
 
         eventBus.$on('new-game', () => {
-            // this.shuffle()
+            this.shuffle()
             this.startDiscardPile()
             this.deal()
             this.startPlayer()
@@ -74,28 +70,13 @@ export default {
                         playCount: 0,
                         winCount: 0
                     })
-                    .then(response => this.players.push(response)) // check that the response looks like a player object once CRUD is in
+                    .then(response => this.players.push(response))
                 }
             } 
             else {
                 alert("Be original! There can only be 'uno' player with that name.")
             }
             })
-
-// delete the below if the above new-player works
-        // eventBus.$on('new-player', (name) => {
-        //     if (!this.players.find(player => player.name === name)) {
-        //         this.players.push({
-        //             name: name,
-        //             hand: [],
-        //             playCount: 0,
-        //             winCount: 0
-        //         })
-        //     } else {
-        //         alert("Be original! There can only be 'uno' player with that name.")
-        //     }
-        //     })
-
 
         eventBus.$on('delete-player', (playerToDelete) => {
             const i = this.players.findIndex(player => playerToDelete === player)
@@ -135,6 +116,7 @@ export default {
         backHome: function() {
             this.gameInProgress = null
         },
+
         setup: function() {
             this.gameInProgress = false
         },
@@ -158,7 +140,7 @@ export default {
 
         deal() {
             for (const player of this.players) {
-                const newHand = this.drawPile.splice(-7, 1)
+                const newHand = this.drawPile.splice(-7, 7)
                 this.$set(player, 'hand', newHand)
             }
         },
@@ -198,7 +180,6 @@ export default {
                 this.players.forEach((player) => {
                     GameService.updatePlayerCounts(player, player._id)
                 })
-                
             }
         },
 
@@ -261,11 +242,13 @@ body {
     background-color: #036931;
     color: white;
 }
+
 #main {
     display: grid;
     grid-template-rows: 13vh 87vh;
     grid-template-columns: 100vw;
 }
+
 .play-button {
     position: fixed;
     top: 50%;
