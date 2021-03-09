@@ -246,11 +246,11 @@ export default {
 <style>
 body {
     margin: 0;
-    background-color: #31700c;
+    background-color: #700c0c;
+    /* background-color: #31700c; */
     background-image: url("./assets/felt.png");
-    background-size: 100px;
-    background-repeat: no-repeat;
-    /* background-color: #036931; */
+    background-size: 250px;
+    background-repeat: repeat;
     color: white;
 }
 #main {
