@@ -390,5 +390,33 @@ db.cards.insertMany([
       number: "Skip",
       color: "blue"
   },
+  {
+      number: "CD",
+      color: "red"
+  },
+  {
+      number: "CD",
+      color: "red"
+  },
+  {
+      number: "CD",
+      color: "yellow"
+  },
+  {
+      number: "CD",
+      color: "yellow"
+  },
+  {
+      number: "CD",
+      color: "green"
+  },
+  {
+      number: "CD",
+      color: "green"
+  },
+  {
+      number: "CD",
+      color: "blue"
+  }
 ]
 )

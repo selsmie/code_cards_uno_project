@@ -79,6 +79,7 @@ export default {
             this.handlePlus4Card()
             this.handlePlus2Card()
             this.handleSkipCard()
+            this.handleChangeDirectionCard()
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -177,11 +178,18 @@ export default {
             if (this.discardPile[0].number === "Skip") {
                 this.nextTurn()
             }
-        }
-    }
-    }
+        },
 
-
+        handleChangeDirectionCard() {
+            const currentIndex = this.players.indexOf(this.currentPlayer)
+            if (this.discardPile[0].number === "CD") {
+                this.currentPlayer = this.players[currentIndex - 1]
+                this.players.reverse()
+                this.nextTurn()
+            }
+        },
+    }
+}
 </script>
 
 <style>
