@@ -22,7 +22,7 @@ export default {
         getLeaderboard() {
             GameService.getLeaderboard()
             .then(leaderboard => this.leaderboard = leaderboard)
-            .then(this.sortLeaderboard())
+            .then(this.sortLeaderboard)
         },
         sortLeaderboard() {
             this.leaderboard.sort(function (a, b) {
