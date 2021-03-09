@@ -62,7 +62,7 @@ h1 {
 .leaderboard {
     grid-column-start: 2;
     grid-row-start: 2;
-    /* overflow: scroll; */
+    overflow: scroll;
 }
 
 p {
