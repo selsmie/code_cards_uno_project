@@ -78,6 +78,7 @@ export default {
             this.winnerIs()
             this.handlePlus4Card()
             this.handlePlus2Card()
+            this.handleSkipCard()
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -169,6 +170,12 @@ export default {
                     this.currentPlayer.hand.push(this.drawPile.shift())
                     i++
                 }
+            }
+        },
+
+        handleSkipCard() {
+            if (this.discardPile[0].number === "Skip") {
+                this.nextTurn()
             }
         }
     }
