@@ -2,9 +2,7 @@
     <div class="pop-out-window">
         <div class="pop-out-frame pop-out-grid">
             <h1>Leaderboard</h1>
-                <article id="how-to-play-instructions">
-                   
-                </article>
+
             <button class="button button-position" v-on:click.prevent="closePopOut">Close</button>
         </div>
     </div>
@@ -14,7 +12,7 @@
 import { navToggle, leaderboardToggle} from '@/store.js'
 
 export default {
-    "name": "how-to-play",
+    "name": "leaderboard",
     methods: {
         closePopOut() {
             leaderboardToggle.toggleLeaderboard()
@@ -57,11 +55,11 @@ h1 {
     color: white;
 }
 
-#how-to-play-instructions {
+/* #how-to-play-instructions {
     grid-column-start: 2;
     grid-row-start: 2;
     overflow: scroll;
-}
+} */
 
 p {
     justify-self: center;
