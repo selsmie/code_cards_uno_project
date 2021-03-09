@@ -359,83 +359,83 @@ db.cards.insertMany([
       color: "blue"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "red"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "red"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "yellow"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "yellow"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "green"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "green"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "blue"
   },
   {
-      number: "Skip",
+      number: "🚫",
       color: "blue"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "red"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "red"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "yellow"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "yellow"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "green"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "green"
   },
   {
-      number: "CD",
+      number: "↩️",
       color: "blue"
   },
   {
-      number: "+4",
+      number: "↩️",
+      color: "blue"
+  },
+  {
+      number: "🎨",
       color: "black"
   },
   {
-      number: "CC",
+      number: "🎨",
       color: "black"
   },
   {
-      number: "CC",
+      number: "🎨",
       color: "black"
   },
   {
-      number: "CC",
-      color: "black"
-  },
-  {
-      number: "CC",
+      number: "🎨",
       color: "black"
   }
 ]

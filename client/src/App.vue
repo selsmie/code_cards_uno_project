@@ -176,14 +176,14 @@ export default {
         },
 
         handleSkipCard() {
-            if (this.discardPile[0].number === "Skip") {
+            if (this.discardPile[0].number === "🚫") {
                 this.nextTurn()
             }
         },
 
         handleChangeDirectionCard() {
             const currentIndex = this.players.indexOf(this.currentPlayer)
-            if (this.discardPile[0].number === "CD") {
+            if (this.discardPile[0].number === "↩️") {
                 this.currentPlayer = this.players[currentIndex - 1]
                 this.players.reverse()
                 this.nextTurn()
@@ -192,7 +192,7 @@ export default {
 
         handleChangeColorCard() {
             const currentIndex = this.players.indexOf(this.currentPlayer)
-            if (this.discardPile[0].number === "CC") {
+            if (this.discardPile[0].number === "🎨") {
                 this.currentPlayer = this.players[currentIndex - 1]
             }
         }
