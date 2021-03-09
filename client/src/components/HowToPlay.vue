@@ -2,39 +2,9 @@
     <div class="pop-out-window">
         <div class="pop-out-frame pop-out-grid">
             <h1>How To Play</h1>
-                <article id="how-to-play-instructions">
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula odio, mattis dignissim 
-                    imperdiet id, sagittis eget diam. Proin ipsum metus, maximus vel ante eu, auctor eleifend 
-                    lacus. Donec non efficitur enim. Duis rutrum id nisl sed scelerisque. Pellentesque 
-                    elementum tortor lacus, id eleifend leo dictum in. Aliquam nibh est, sagittis ut libero 
-                    tincidunt, placerat elementum sapien. Quisque turpis turpis, egestas sed maximus quis, 
-                    sagittis vestibulum elit.
-
-                    Suspendisse a urna id erat mollis volutpat quis id diam. Quisque id nisl vehicula, viverra 
-                    enim ut, iaculis magna. Quisque sed erat ex. Nullam malesuada dignissim pretium. Proin at augue 
-                    placerat, varius sem et, commodo libero. Sed sollicitudin sit amet justo sed lobortis. Cras ipsum 
-                    mauris, vulputate egestas ex in, tempor convallis dolor. Suspendisse sit amet tincidunt lacus. 
-                    Integer convallis odio vitae massa luctus lobortis. Nullam eget nunc eu mi aliquam rutrum eget 
-                    in nisl. Integer consequat arcu dictum leo porttitor ultrices. Maecenas molestie at ante interdum 
-                    varius.
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula odio, mattis dignissim 
-                    imperdiet id, sagittis eget diam. Proin ipsum metus, maximus vel ante eu, auctor eleifend 
-                    lacus. Donec non efficitur enim. Duis rutrum id nisl sed scelerisque. Pellentesque 
-                    elementum tortor lacus, id eleifend leo dictum in. Aliquam nibh est, sagittis ut libero 
-                    tincidunt, placerat elementum sapien. Quisque turpis turpis, egestas sed maximus quis, 
-                    sagittis vestibulum elit.
-
-                    Suspendisse a urna id erat mollis volutpat quis id diam. Quisque id nisl vehicula, viverra 
-                    enim ut, iaculis magna. Quisque sed erat ex. Nullam malesuada dignissim pretium. Proin at augue 
-                    placerat, varius sem et, commodo libero. Sed sollicitudin sit amet justo sed lobortis. Cras ipsum 
-                    mauris, vulputate egestas ex in, tempor convallis dolor. Suspendisse sit amet tincidunt lacus. 
-                    Integer convallis odio vitae massa luctus lobortis. Nullam eget nunc eu mi aliquam rutrum eget 
-                    in nisl. Integer consequat arcu dictum leo porttitor ultrices. Maecenas molestie at ante interdum 
-                    varius.
-                    </p>
-                </article>
+                <section id="how-to-play-instructions">
+                   <iframe src="https://www.youtube.com/embed/_CvaIyRE1Tw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </section>
             <button class="button button-position" v-on:click.prevent="closePopOut">Close</button>
         </div>
     </div>
