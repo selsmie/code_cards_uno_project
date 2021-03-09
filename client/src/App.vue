@@ -246,7 +246,11 @@ export default {
 <style>
 body {
     margin: 0;
-    background-color: #036931;
+    background-color: #31700c;
+    background-image: url("./assets/felt.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    /* background-color: #036931; */
     color: white;
 }
 #main {
@@ -254,6 +258,7 @@ body {
     grid-template-rows: 13vh 87vh;
     grid-template-columns: 100vw;
 }
+
 .play-button {
     position: fixed;
     top: 50%;
