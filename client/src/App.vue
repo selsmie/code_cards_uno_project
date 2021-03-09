@@ -60,28 +60,6 @@ export default {
             this.selectedCard = null
         })
 
-
-        eventBus.$on('new-player', (name) => {
-            if (!this.players.find(player => player.name === name)) {
-                if (!this.leaderboard.find(name => player.name === name)) {
-                    GameService.addPlayer({
-                        name: name,
-                        hand: [],
-                        playCount: 0,
-                        winCount: 0
-                    })
-                    .then(response => this.players.push(response)) // check that the response looks like a player object once CRUD is in
-                } 
-                else {
-                    const playerToAdd = this.leaderboard.find(name => player.name === name)
-                    this.players.push(playerToAdd)
-                }
-            } 
-            else {
-                alert("Be original! There can only be 'uno' player with that name.")
-            }
-            })
-
         eventBus.$on('new-player', (name) => {
             if (!this.players.find(player => player.name === name)) {
                 if (this.leaderboard.find(name => player.name === name)) {

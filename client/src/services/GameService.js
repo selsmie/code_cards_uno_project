@@ -1,5 +1,5 @@
-const baseCardsURL = 'http://localhost:3000/api/code_cards/cards';
-const baseLeaderboardURL = 'http://localhost:3000/api/code_cards/leaderboard';
+const baseCardsURL = 'http://localhost:3000/api/code_cards/cards/';
+const baseLeaderboardURL = 'http://localhost:3000/api/code_cards/leaderboard/';
 
 export default{
     getCards() {
