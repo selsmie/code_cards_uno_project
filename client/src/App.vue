@@ -50,7 +50,7 @@ export default {
         eventBus.$on('play-again', () => {
             this.gameInProgress = false
             this.winner = false
-            this.remainingCardDeck = []
+            this.drawPile = []
             this.discardPile = []
             this.currentPlayer = null
             this.selectedCard = null
@@ -76,6 +76,8 @@ export default {
             this.discardPile.unshift(this.selectedCard)
             this.selectedCard = null
             this.winnerIs()
+            this.handlePlus4Card()
+            this.handlePlus2Card()
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -147,6 +149,26 @@ export default {
             } else {
                 this.winner = true
                 // GameService.addWinner(this.currentPlayer.name)
+            }
+        },
+
+        handlePlus4Card() {
+            if (this.discardPile[0].number === "+4") {
+                let i = 0
+                while (i < 4) {
+                    this.currentPlayer.hand.push(this.drawPile.shift())
+                    i++
+                }
+            }
+        },
+
+        handlePlus2Card() {
+            if (this.discardPile[0].number === "+2") {
+                let i = 0
+                while (i < 2) {
+                    this.currentPlayer.hand.push(this.drawPile.shift())
+                    i++
+                }
             }
         }
     }

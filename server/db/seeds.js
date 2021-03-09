@@ -310,5 +310,53 @@ db.cards.insertMany([
       number: "9",
       color: "blue"
   },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+2",
+      color: "red"
+  },
+  {
+      number: "+2",
+      color: "red"
+  },
+  {
+      number: "+2",
+      color: "yellow"
+  },
+  {
+      number: "+2",
+      color: "yellow"
+  },
+  {
+      number: "+2",
+      color: "green"
+  },
+  {
+      number: "+2",
+      color: "green"
+  },
+  {
+      number: "+2",
+      color: "blue"
+  },
+  {
+      number: "+2",
+      color: "blue"
+  }
 ]
 )

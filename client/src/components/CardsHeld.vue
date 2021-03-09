@@ -11,8 +11,10 @@ export default {
     props: ['card', 'topCard'],
     methods: {
         selectedCard: function() {
-            if (this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+            if (this.card.color === this.topCard.color || this.card.color === "black" || this.card.number === this.topCard.number) {
             eventBus.$emit('selected-card', this.card)
+            } else if (this.topCard.color === "black") {
+                eventBus.$emit('selected-card', this.card)
             }
         }
     }
@@ -50,5 +52,10 @@ export default {
 #cards-held.yellow {
     background-color: yellow;
     color: black;
+}
+
+.black {
+    background-color: black;
+    color: white;
 }
 </style>

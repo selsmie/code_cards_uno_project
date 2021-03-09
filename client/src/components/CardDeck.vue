@@ -22,7 +22,7 @@ export default {
         }, 
         handleEmptyPile() {
             eventBus.$emit("draw-pile-empty")
-        }    
+        },    
     },
     computed: {
         showTopCard: function() {
