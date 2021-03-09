@@ -1,7 +1,6 @@
 <template>
 <div class='form'>
     <form @submit="addPlayer" v-if="players.length < 10">
-        <!-- <label for="name">Player name: </label> -->
         <input type="text" id="name" name="name" v-model="name" required autofocus placeholder="Player Name">
         <input type="submit" value="+" id="save"/>
     </form>
