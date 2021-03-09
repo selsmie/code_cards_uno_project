@@ -1,5 +1,8 @@
 <template>
-    <h3>This Is The Leaderboard</h3>
+    <div>
+        <h3>This Is The Leaderboard</h3>
+        <!-- <button v-on:click.prevent="getLeaderboard">Click for Leaderboard</button> -->
+    </div>
 </template>
 
 <script>
@@ -7,23 +10,22 @@ import GameService from '@/services/GameService'
 
 export default {
     name: "leaderboard",
-    props: ['leaderboard'],
     data() {
         return {
             leaderboard: [],
         }
     },
     methods: {
-
-    },
-    computed: {
-        getLeaderboard: function() {
-        GameService.getLeaderboard()
+        getLeaderboard() {
+            GameService.getLeaderboard()
             .then(leaderboard => this.leaderboard = leaderboard)
         }
     },
-    mounted: {
-
+    // computed: {
+        
+    // },
+    mounted() {
+        this.getLeaderboard()
     },
 }
 </script>
