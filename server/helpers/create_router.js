@@ -1,5 +1,5 @@
 const express = require('express');
-const ObjectId = require('mondgodb').ObjectId
+const ObjectId = require('mongodb').ObjectId
 
 const createRouter = function(collection) {
 
@@ -17,7 +17,17 @@ const createRouter = function(collection) {
         })
     });
 
-
+    router.get('/:id', (req, res) => {
+        const id = req.params.id
+        collection
+        .findOne({ _id: ObjectId(id) })
+        .then((docs) => res.json(docs))
+        .catch((err) => {
+            console.error(err)
+            res.status(500)
+            res.json({status: 500, error: err})
+        })
+    });
 
 
 

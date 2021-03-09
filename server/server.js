@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
 app.use(bodyParser.json());
+
 MongoClient.connect('mongodb://localhost:27017')
     .then((client) => {
         const db = client.db('code_cards_uno_project');
