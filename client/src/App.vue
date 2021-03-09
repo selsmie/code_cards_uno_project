@@ -27,6 +27,7 @@ export default {
             currentPlayer:  null,
             selectedCard: null,
             winner: false,
+            leaderboard: [],
         }
     },
     components: {
@@ -35,11 +36,15 @@ export default {
         "header-main": Header,
     },
     mounted() {
-        GameService.getCards()
-            .then(originalDeck => this.drawPile = originalDeck)
+        this.getCardsAndLeaders()
+        // GameService.getCards()
+        //     .then(originalDeck => this.drawPile = originalDeck)
+
+        // GameService.getLeaderboard()
+        //     .then(leaderboard => this.leaderboard = leaderboard)
 
         eventBus.$on('new-game', () => {
-            this.shuffle()
+            // this.shuffle()
             this.startDiscardPile()
             this.deal()
             this.startPlayer()
@@ -50,7 +55,7 @@ export default {
         eventBus.$on('play-again', () => {
             this.gameInProgress = false
             this.winner = false
-            this.drawPile = []
+            this.getCardsAndLeaders()
             this.discardPile = []
             this.currentPlayer = null
             this.selectedCard = null
@@ -58,11 +63,39 @@ export default {
 
         eventBus.$on('new-player', (name) => {
             if (!this.players.find(player => player.name === name)) {
-                this.players.push({ name: name, hand: [] })
-            } else {
+                if (this.leaderboard.find(player => player.name === name)) {
+                    const playerToAdd = this.leaderboard.find(player => player.name === name)
+                    this.players.push(playerToAdd)
+                } 
+                else {
+                    GameService.addPlayer({
+                        name: name,
+                        hand: [],
+                        playCount: 0,
+                        winCount: 0
+                    })
+                    .then(response => this.players.push(response)) // check that the response looks like a player object once CRUD is in
+                }
+            } 
+            else {
                 alert("Be original! There can only be 'uno' player with that name.")
             }
             })
+
+// delete the below if the above new-player works
+        // eventBus.$on('new-player', (name) => {
+        //     if (!this.players.find(player => player.name === name)) {
+        //         this.players.push({
+        //             name: name,
+        //             hand: [],
+        //             playCount: 0,
+        //             winCount: 0
+        //         })
+        //     } else {
+        //         alert("Be original! There can only be 'uno' player with that name.")
+        //     }
+        //     })
+
 
         eventBus.$on('delete-player', (playerToDelete) => {
             const i = this.players.findIndex(player => playerToDelete === player)
@@ -78,6 +111,9 @@ export default {
             this.winnerIs()
             this.handlePlus4Card()
             this.handlePlus2Card()
+            this.handleSkipCard()
+            this.handleChangeDirectionCard()
+            this.handleChangeColorCard()
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -94,12 +130,21 @@ export default {
             this.discardPile.splice(1, this.discardPile.length)
         })
     },
+
     methods: {
         backHome: function() {
             this.gameInProgress = null
         },
         setup: function() {
             this.gameInProgress = false
+        },
+
+        getCardsAndLeaders: function() {
+            GameService.getCards()
+                .then(originalDeck => this.drawPile = originalDeck)
+
+            GameService.getLeaderboard()
+                .then(leaderboard => this.leaderboard = leaderboard)
         },
 
         shuffle() {
@@ -113,7 +158,7 @@ export default {
 
         deal() {
             for (const player of this.players) {
-                const newHand = this.drawPile.splice(-7, 7)
+                const newHand = this.drawPile.splice(-7, 1)
                 this.$set(player, 'hand', newHand)
             }
         },
@@ -148,8 +193,21 @@ export default {
                 this.nextTurn()
             } else {
                 this.winner = true
-                // GameService.addWinner(this.currentPlayer.name)
+                this.addPlayCount()
+                this.addWinCount()
+                this.players.forEach((player) => {
+                    GameService.updatePlayerCounts(player, player._id)
+                })
+                
             }
+        },
+
+        addPlayCount: function() {
+            this.players.forEach(player => player.playCount++)
+        },
+
+        addWinCount: function() {
+            this.currentPlayer.winCount++
         },
 
         handlePlus4Card() {
@@ -170,11 +228,31 @@ export default {
                     i++
                 }
             }
+        },
+        
+        handleSkipCard() {
+            if (this.discardPile[0].number === "🚫") {
+                this.nextTurn()
+            }
+        },
+
+        handleChangeDirectionCard() {
+            const currentIndex = this.players.indexOf(this.currentPlayer)
+            if (this.discardPile[0].number === "↩️") {
+                this.currentPlayer = this.players[currentIndex - 1]
+                this.players.reverse()
+                this.nextTurn()
+            }
+        },
+
+        handleChangeColorCard() {
+            const currentIndex = this.players.indexOf(this.currentPlayer)
+            if (this.discardPile[0].number === "🎨") {
+                this.currentPlayer = this.players[currentIndex - 1]
+            }
         }
     }
-    }
-
-
+}
 </script>
 
 <style>

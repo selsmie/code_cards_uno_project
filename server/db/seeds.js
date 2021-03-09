@@ -2,6 +2,21 @@ use code_cards_uno_project;
 
 db.dropDatabase();
 
+db.leaderboard.insertMany([
+    {
+        name: "Alex",
+        hand: [],
+        playCount: 2,
+        winCount: 2
+    },
+    {
+        name: "Lunch",
+        hand: [],
+        playCount: 10,
+        winCount: 10
+    },
+])
+
 db.cards.insertMany([
   {
       number: "0",
@@ -357,6 +372,86 @@ db.cards.insertMany([
   {
       number: "+2",
       color: "blue"
+  },
+  {
+      number: "🚫",
+      color: "red"
+  },
+  {
+      number: "🚫",
+      color: "red"
+  },
+  {
+      number: "🚫",
+      color: "yellow"
+  },
+  {
+      number: "🚫",
+      color: "yellow"
+  },
+  {
+      number: "🚫",
+      color: "green"
+  },
+  {
+      number: "🚫",
+      color: "green"
+  },
+  {
+      number: "🚫",
+      color: "blue"
+  },
+  {
+      number: "🚫",
+      color: "blue"
+  },
+  {
+      number: "↩️",
+      color: "red"
+  },
+  {
+      number: "↩️",
+      color: "red"
+  },
+  {
+      number: "↩️",
+      color: "yellow"
+  },
+  {
+      number: "↩️",
+      color: "yellow"
+  },
+  {
+      number: "↩️",
+      color: "green"
+  },
+  {
+      number: "↩️",
+      color: "green"
+  },
+  {
+      number: "↩️",
+      color: "blue"
+  },
+  {
+      number: "↩️",
+      color: "blue"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  },
+  {
+      number: "🎨",
+      color: "black"
   }
 ]
 )
