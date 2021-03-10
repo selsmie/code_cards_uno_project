@@ -1,5 +1,10 @@
 <template>
-    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>{{ cardGraphic }}</li>
+    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>
+        <font-awesome-icon icon="ban" size="1x" v-if="card.number === '🚫'" />
+        <font-awesome-icon icon="retweet" size="1x" v-if="card.number === '↩️'" />
+        <font-awesome-icon icon="palette" size="1x" v-if="card.number === '🎨'" />
+        <span v-if="cardGraphic">{{ card.number }}</span>
+    </li>
 </template>
 
 <script>
@@ -18,19 +23,16 @@ export default {
             }
         }
     },
-    //  <font-awesome-icon icon="ban" size="2x"/>
-    //         <font-awesome-icon icon="retweet" size="2x"/>
-    //         <font-awesome-icon icon="palette" size="2x"/>
     computed: {
         cardGraphic: function () {
            if (this.card.number === "🚫") {
-                return "50"
+                return false
             } else if (this.card.number === "↩️") {
-                return "60"
+                return false
             } else if (this.card.number === "🎨") {
-                return "70"
+                return false
             } else {
-                return this.card.number
+                return true
             }
         }
     }
