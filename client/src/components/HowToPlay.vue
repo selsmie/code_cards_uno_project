@@ -74,6 +74,10 @@ h1 {
     overflow: scroll;
 }
 
+#how-to-play-instructions::-webkit-scrollbar {
+  display: none;
+}
+
 p {
     justify-self: center;
     color: white;

@@ -25,11 +25,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items:center;
-  widows: 70%;
 }
 .player-hand{
     display: flex;
-    height: 80px;
     margin: 0px 30px;
     padding: 0px;
     overflow: scroll;

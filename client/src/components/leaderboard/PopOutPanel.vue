@@ -65,6 +65,10 @@ h1 {
     overflow: scroll;
 }
 
+.leaderboard::-webkit-scrollbar {
+  display: none;
+}
+
 p {
     justify-self: center;
     color: white;

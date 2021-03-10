@@ -1,5 +1,5 @@
 <template>
-    <li :class="[card ? card.color: null, selectableCard() ? 'playable' : null]" id='cards-held' v-on:click='selectedCard'>
+    <li :class="['cards-held', card ? card.color: null, selectableCard() ? 'playable' : 'not-playable']"  v-on:click='selectedCard'>
         <font-awesome-icon icon="ban" size="1x" v-if="card.number === '🚫'" />
         <font-awesome-icon icon="retweet" size="1x" v-if="card.number === '↩️'" />
         <font-awesome-icon icon="palette" size="1x" v-if="card.number === '🎨'" />
@@ -24,7 +24,7 @@ export default {
         },
 
         selectableCard: function() {
-            if (this.card.color === this.topCard.color || this.card.color === "black-wild" || this.card.number === this.topCard.number) {
+            if (this.topCard.color === "black-wild" || this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
                 return true
             }
         }    
@@ -46,12 +46,12 @@ export default {
 </script>
 
 <style>
-#cards-held {
+.cards-held {
     list-style: none;
     height: 4rem;
     width: 1rem;
     padding: 5px 13px;
-    margin: 2px;
+    margin: 10px 5px;
     border: 2px solid black;
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@ export default {
     font-size: 25px;
     color: white;
     border-radius: 8px;
-    cursor: pointer;
+    
 }
 
 .red {
@@ -74,7 +74,7 @@ export default {
     background-color: green;
 }
 
-#cards-held.yellow {
+.cards-held.yellow {
     background-color: yellow;
     color: black;
 }
@@ -85,6 +85,11 @@ export default {
 }
 
 .playable {
-    margin-bottom: 40px;
+    box-shadow: 0 0 3px 3px white;
+    cursor: pointer;
+}
+
+.not-playable {
+    cursor:not-allowed;
 }
 </style>

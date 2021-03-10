@@ -54,7 +54,6 @@ export default {
     text-align: center;
     font-size: 25px;
     margin: 5px;
-    height: 100px;
 }
 
 .winner {
