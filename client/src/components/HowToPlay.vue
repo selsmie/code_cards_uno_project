@@ -29,7 +29,6 @@ export default {
     methods: {
         closePopOut() {
             howToPlayToggle.toggleHowToPlay()
-            navToggle.toggleNav()
         }
     },
 }

@@ -20,7 +20,6 @@ export default {
     methods: {
         closePopOut() {
             leaderboardToggle.toggleLeaderboard()
-            navToggle.toggleNav()
         }
     },
 }

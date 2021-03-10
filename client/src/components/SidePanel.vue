@@ -9,6 +9,7 @@
                     <li class="menu-item"><button v-on:click.prevent="openHowToPlay">HOW TO PLAY</button></li>
                     <li class="menu-item"><button v-on:click.prevent="openLeaderboard">LEADERBOARD</button></li>
                 </ul>
+                <app-credits></app-credits>
             </div>
         </transition>
         <how-to-play v-if="isHowToPlayOpen"></how-to-play>
@@ -19,6 +20,7 @@
 <script>
 import HowToPlay from './HowToPlay.vue'
 import Leaderboard from './leaderboard/PopOutPanel.vue'
+import AppCredits from './AppCredits.vue'
 import { navOpen, navToggle } from "@/store.js"
 import { howToPlay, howToPlayToggle, } from "@/store.js"
 import { leaderboardMenu, leaderboardToggle, } from "@/store.js"
@@ -32,6 +34,7 @@ export default {
     components: {
         "how-to-play": HowToPlay,
         "leaderboard": Leaderboard,
+        "app-credits": AppCredits
     },
     methods: {
         closeSidePanel: navToggle.toggleNav,
@@ -88,9 +91,9 @@ export default {
     left: 0;
     top: 0;
     height: 100vh;
-    z-index: 999;
+    z-index: 998;
     padding: 3rem 20px 2rem 20px;
-    width: 300px;
+    width: 200px;
 }
 
 .close-button {
@@ -128,12 +131,11 @@ button {
 #exit {
     font-size: 20px;
     text-align: center;
-    margin: 0 auto;
     border: 2px solid white;
     border-radius: 12px;
     padding: 0px;
     width: 120px;
-    margin-bottom: 10px;
+    margin: 10px auto 40px auto;
     cursor: pointer;
 }
 
