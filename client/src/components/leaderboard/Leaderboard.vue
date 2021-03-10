@@ -4,7 +4,6 @@
         <ul class="players_list" >
             <li v-for="(player, index) in leaderboard" :key="index">{{index +1}} - {{player.name}} - {{player.winCount}}</li>
         </ul>
-        <!-- <button v-on:click.prevent="sortLeaderboard">Click for Leaderboard</button> -->
     </div>
 </template>
 
