@@ -76,7 +76,7 @@ export default {
 
 .side-panel-menu {
     overflow-y: auto;
-    background-color: #2E1114;
+    background-color: rgb(17 46 25);
     position: fixed;
     left: 0;
     top: 0;
