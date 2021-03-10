@@ -1,6 +1,6 @@
 <template>
     <div class='testing'>
-        <p>Name: {{ player.name }}</p>
+        <p>{{ player.name }}</p>
         <button v-on:click="handleDelete" id='test'>X</button>
     </div>
 </template>

@@ -13,7 +13,7 @@ export default {
 
 <style>
 .current {
-  color: red;
+  color: rgb(0, 16, 107);
   font-weight: bold;
 }
 

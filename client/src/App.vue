@@ -93,7 +93,6 @@ export default {
                 this.handlePlus2Card()
                 this.handleSkipCard()
             }
-     
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -226,6 +225,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 body {
     margin: 0;
     background-color: #31700c;
@@ -233,7 +234,7 @@ body {
     background-size: 250px;
     background-repeat: repeat;
     color: white;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #main {
