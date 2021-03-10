@@ -19,5 +19,11 @@ export default {
 
 #player-count {
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+#player-count > span {
+  margin-left: 10px;
 }
 </style>
