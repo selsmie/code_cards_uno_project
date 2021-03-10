@@ -1,5 +1,10 @@
 <template>
-    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>{{ card.number }}</li>
+    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>
+        <font-awesome-icon icon="ban" size="1x" v-if="card.number === '🚫'" />
+        <font-awesome-icon icon="retweet" size="1x" v-if="card.number === '↩️'" />
+        <font-awesome-icon icon="palette" size="1x" v-if="card.number === '🎨'" />
+        <span v-if="cardGraphic">{{ card.number }}</span>
+    </li>
 </template>
 
 <script>
@@ -11,8 +16,23 @@ export default {
     props: ['card', 'topCard'],
     methods: {
         selectedCard: function() {
-            if (this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+            if (this.card.color === this.topCard.color || this.card.color === "black" || this.card.number === this.topCard.number) {
             eventBus.$emit('selected-card', this.card)
+            } else if (this.topCard.color === "black") {
+                eventBus.$emit('selected-card', this.card)
+            }
+        }
+    },
+    computed: {
+        cardGraphic: function () {
+           if (this.card.number === "🚫") {
+                return false
+            } else if (this.card.number === "↩️") {
+                return false
+            } else if (this.card.number === "🎨") {
+                return false
+            } else {
+                return true
             }
         }
     }
@@ -22,7 +42,8 @@ export default {
 <style>
 #cards-held {
     list-style: none;
-    height: 50px;
+    height: 4rem;
+    width: 1rem;
     padding: 5px 13px;
     margin: 2px;
     border: 2px solid black;
@@ -50,5 +71,10 @@ export default {
 #cards-held.yellow {
     background-color: yellow;
     color: black;
+}
+
+.black {
+    background-color: black;
+    color: white;
 }
 </style>

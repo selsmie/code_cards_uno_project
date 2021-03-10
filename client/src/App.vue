@@ -34,9 +34,9 @@ export default {
         "game": Game,
         "header-main": Header,
     },
+
     mounted() {
-        GameService.getCards()
-            .then(originalDeck => this.drawPile = originalDeck)
+        this.getCardsAndLeaders()
 
         eventBus.$on('new-game', () => {
             this.shuffle()
@@ -50,7 +50,7 @@ export default {
         eventBus.$on('play-again', () => {
             this.gameInProgress = false
             this.winner = false
-            this.remainingCardDeck = []
+            this.getCardsAndLeaders()
             this.discardPile = []
             this.currentPlayer = null
             this.selectedCard = null
@@ -58,8 +58,21 @@ export default {
 
         eventBus.$on('new-player', (name) => {
             if (!this.players.find(player => player.name === name)) {
-                this.players.push({ name: name, hand: [] })
-            } else {
+                if (this.leaderboard.find(player => player.name === name)) {
+                    const playerToAdd = this.leaderboard.find(player => player.name === name)
+                    this.players.push(playerToAdd)
+                } 
+                else {
+                    GameService.addPlayer({
+                        name: name,
+                        hand: [],
+                        playCount: 0,
+                        winCount: 0
+                    })
+                    .then(response => this.players.push(response))
+                }
+            } 
+            else {
                 alert("Be original! There can only be 'uno' player with that name.")
             }
             })
@@ -75,7 +88,16 @@ export default {
             this.currentPlayer.hand.splice(index, 1)
             this.discardPile.unshift(this.selectedCard)
             this.selectedCard = null
-            this.winnerIs()
+            if (this.discardPile[0].number === "🎨") {
+                return
+            } else {
+                this.handleChangeDirectionCard()
+                this.winnerIs()
+                this.handlePlus4Card()
+                this.handlePlus2Card()
+                this.handleSkipCard()
+            }
+     
         })
 
         eventBus.$on('draw-card', (card) => {
@@ -92,12 +114,22 @@ export default {
             this.discardPile.splice(1, this.discardPile.length)
         })
     },
+
     methods: {
         backHome: function() {
             this.gameInProgress = null
         },
+
         setup: function() {
             this.gameInProgress = false
+        },
+
+        getCardsAndLeaders: function() {
+            GameService.getCards()
+                .then(originalDeck => this.drawPile = originalDeck)
+
+            GameService.getLeaderboard()
+                .then(leaderboard => this.leaderboard = leaderboard)
         },
 
         shuffle() {
@@ -146,25 +178,74 @@ export default {
                 this.nextTurn()
             } else {
                 this.winner = true
-                // GameService.addWinner(this.currentPlayer.name)
+                this.addPlayCount()
+                this.addWinCount()
+                this.players.forEach((player) => {
+                    GameService.updatePlayerCounts(player, player._id)
+                })
             }
-        }
-    }
-    }
+        },
 
+        addPlayCount: function() {
+            this.players.forEach(player => player.playCount++)
+        },
 
+        addWinCount: function() {
+            this.currentPlayer.winCount++
+        },
+
+        handlePlus4Card() {
+            if (this.discardPile[0].number === "+4") {
+                let i = 0
+                while (i < 4) {
+                    this.currentPlayer.hand.push(this.drawPile.shift())
+                    i++
+                }
+            }
+        },
+
+        handlePlus2Card() {
+            if (this.discardPile[0].number === "+2") {
+                let i = 0
+                while (i < 2) {
+                    this.currentPlayer.hand.push(this.drawPile.shift())
+                    i++
+                }
+            }
+        },
+        
+        handleSkipCard() {
+            if (this.discardPile[0].number === "🚫") {
+                this.nextTurn()
+            }
+        },
+
+        handleChangeDirectionCard() {
+            if (this.discardPile[0].number === "↩️") {
+                this.players.reverse()
+            }
+        },
+    }
+}
 </script>
 
 <style>
 body {
     margin: 0;
-    background-color: #036931;
+    /* background-color: #700c0c; */
+    background-color: #31700c;
+    background-image: url("./assets/felt-background.png");
+    background-size: 250px;
+    background-repeat: repeat;
+    color: white;
 }
+
 #main {
     display: grid;
     grid-template-rows: 13vh 87vh;
     grid-template-columns: 100vw;
 }
+
 .play-button {
     position: fixed;
     top: 50%;

@@ -1,9 +1,8 @@
 <template>
 <div class='form'>
     <form @submit="addPlayer" v-if="players.length < 10">
-        <label for="name">Player name: </label>
-        <input type="text" id="name" name="name" v-model="name" required autofocus>
-        <input type="submit" value="Add" id="save"/>
+        <input type="text" id="name" name="name" v-model="name" required autofocus placeholder="Player Name">
+        <input type="submit" value="+" id="save"/>
     </form>
     <br>
     <section>
@@ -27,6 +26,7 @@ export default {
             name: '',
         }
     },
+
     props: ['players'],
     components: {
         'added-players': AddedPlayers
@@ -43,7 +43,6 @@ export default {
             eventBus.$emit('new-game')
         }
     },
-
 }
 </script>
 
@@ -54,6 +53,11 @@ export default {
     justify-items: center;
 }
 
+form {
+    display: flex;
+    align-items: center;
+}
+
 .form > section {
     display: grid;
 }
@@ -61,5 +65,22 @@ export default {
 .form > section > button {
     height: 30px;
     border-radius: 12px;
+}
+
+.form > form > input[type=text] {
+    border-radius: 12px;
+    height: 25px;
+    padding-left: 10px;
+    margin: 0px 5px;
+}
+
+.form > form > input[type=submit] {
+    border-radius: 12px;
+    height: 31px;
+    width: 31px;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0px;
+    
 }
 </style>

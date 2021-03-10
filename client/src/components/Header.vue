@@ -1,7 +1,9 @@
 <template>
     <header>
         <div id="header">
-            <button id="menu-button" type="button" v-on:click.prevent="showMenu">Click Me</button>
+            <button class="menu-button" type="button" v-on:click.prevent="showMenu">
+				<font-awesome-icon icon="bars" size="2x"/>
+			</button>
             <p id="logo">Uno Stack-App-O</p>
         </div>
 
@@ -40,12 +42,22 @@ export default {
   height: 13vh;
 }
 
-#menu-button {
-    height: 30px;
-    width: 100px;
-    align-self: center;
-    margin-left: 30px;
-    cursor: pointer;
+.menu-button {
+	background: transparent;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+	height: 40px;
+	width: 50px;
+	align-self: center;
+	margin-left: 1rem;
+}
+
+.fa-2x {
+    font-size: 2.7rem;
 }
 
 #logo {
@@ -53,6 +65,11 @@ export default {
   margin: 0;
   justify-self: center;
   align-self: center;
+  font-size: 25px;
+  font-style: italic;
+  border-radius: 12px;
+  border: 3px solid white;
+  padding: 5px;
 }
 
 #player-playing {

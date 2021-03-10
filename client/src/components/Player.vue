@@ -1,11 +1,8 @@
 <template>
-  <div>
-      <p>Name: {{ player.name }}
-          <span>
-              <button v-on:click="handleDelete" id='test'>X</button>
-          </span>
-      </p>
-  </div>
+    <div class='testing'>
+        <p>Name: {{ player.name }}</p>
+        <button v-on:click="handleDelete" id='test'>X</button>
+    </div>
 </template>
 
 <script>
@@ -26,6 +23,18 @@ export default {
 
 
 <style scoped>
+.testing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+    width: 180px;
+}
+
+.testing > p {
+    margin: 0px;
+}
+
 #test {
     border-radius: 50%;
     height: 25px;
@@ -33,5 +42,6 @@ export default {
     color: black;
     font-weight: bold;
     background-color: red;
+    margin-left: 10px;
 }
 </style>

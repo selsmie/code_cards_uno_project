@@ -1,6 +1,6 @@
 <template>
   <div class='card-decks'>
-      <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/fed3bb24-454f-4bdf-a721-6aa8f23e7cef/d9gnihf-ec16caeb-ec9c-4870-9480-57c7711d844f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvZmVkM2JiMjQtNDU0Zi00YmRmLWE3MjEtNmFhOGYyM2U3Y2VmXC9kOWduaWhmLWVjMTZjYWViLWVjOWMtNDg3MC05NDgwLTU3Yzc3MTFkODQ0Zi5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.gou6LQOyuHdVqL_nFIsWaiBXlt4AVGipFl75lBWiWIM" id='card-img' v-on:click='handleDrawCard' v-if="drawPile.length">
+      <img src="@/assets/cards/card-back.png" id='card-img' v-on:click='handleDrawCard' v-if="drawPile.length">
 
       <p v-if='drawPile < 1' id='empty-card' v-on:click='handleEmptyPile'> + </p>
 
@@ -22,7 +22,7 @@ export default {
         }, 
         handleEmptyPile() {
             eventBus.$emit("draw-pile-empty")
-        }    
+        },    
     },
     computed: {
         showTopCard: function() {
@@ -69,7 +69,6 @@ export default {
 #top-card.green {
     background-color: green;
 }
-
 
 #top-card.yellow {
     background-color: yellow;

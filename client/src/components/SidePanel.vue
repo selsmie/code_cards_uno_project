@@ -5,28 +5,38 @@
             <div class="side-panel-menu" v-if="isSidePanelOpen">
                 <a class="close-button" v-on:click="closeSidePanel">X</a>
                 <ul class="menu-list">
-                    <li class="menu-item" v-on:click.prevent="openHowToPlay"><button>HOW TO PLAY</button></li>
+                    <li class="menu-item"><button v-on:click.prevent="openHowToPlay">HOW TO PLAY</button></li>
+                    <li class="menu-item"><button v-on:click.prevent="openLeaderboard">LEADERBOARD</button></li>
                 </ul>
             </div>
         </transition>
-        <how-to-play v-if="isHowToPlayOpen" v-on:click="openHowToPlay"></how-to-play>
+        <how-to-play v-if="isHowToPlayOpen"></how-to-play>
+        <leaderboard v-if="isLeaderboardMenuOpen"></leaderboard>
     </div>
 </template>
 
 <script>
 import HowToPlay from './HowToPlay.vue'
-import { navOpen, navToggle, howToPlay, howToPlayToggle } from "@/store.js"
+import Leaderboard from './leaderboard/PopOutPanel.vue'
+import { navOpen, navToggle } from "@/store.js"
+import { howToPlay, howToPlayToggle, } from "@/store.js"
+import { leaderboardMenu, leaderboardToggle, } from "@/store.js"
+
 
 export default {
     name: "side-panel",
     components: {
-        "how-to-play": HowToPlay
+        "how-to-play": HowToPlay,
+        "leaderboard": Leaderboard,
     },
     methods: {
         closeSidePanel: navToggle.toggleNav,
         openHowToPlay() {
             howToPlayToggle.toggleHowToPlay()
-        }
+        },
+        openLeaderboard() {
+            leaderboardToggle.toggleLeaderboard()
+        },
     },
     computed: {
         isSidePanelOpen() {
@@ -34,6 +44,9 @@ export default {
         },
         isHowToPlayOpen() {
             return howToPlay.isHowToPlayOpen
+        },
+        isLeaderboardMenuOpen() {
+            return leaderboardMenu.isLeaderboardMenuOpen
         }
     }
 }
@@ -95,4 +108,13 @@ export default {
     padding: 0 0 20px 0;
 }
 
+button {
+    background: transparent;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
 </style>>

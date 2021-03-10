@@ -2,6 +2,10 @@ use code_cards_uno_project;
 
 db.dropDatabase();
 
+db.leaderboard.insertMany([
+    
+])
+
 db.cards.insertMany([
   {
       number: "0",
@@ -310,5 +314,133 @@ db.cards.insertMany([
       number: "9",
       color: "blue"
   },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+4",
+      color: "black"
+  },
+  {
+      number: "+2",
+      color: "red"
+  },
+  {
+      number: "+2",
+      color: "red"
+  },
+  {
+      number: "+2",
+      color: "yellow"
+  },
+  {
+      number: "+2",
+      color: "yellow"
+  },
+  {
+      number: "+2",
+      color: "green"
+  },
+  {
+      number: "+2",
+      color: "green"
+  },
+  {
+      number: "+2",
+      color: "blue"
+  },
+  {
+      number: "+2",
+      color: "blue"
+  },
+  {
+      number: "🚫",
+      color: "red"
+  },
+  {
+      number: "🚫",
+      color: "red"
+  },
+  {
+      number: "🚫",
+      color: "yellow"
+  },
+  {
+      number: "🚫",
+      color: "yellow"
+  },
+  {
+      number: "🚫",
+      color: "green"
+  },
+  {
+      number: "🚫",
+      color: "green"
+  },
+  {
+      number: "🚫",
+      color: "blue"
+  },
+  {
+      number: "🚫",
+      color: "blue"
+  },
+  {
+      number: "↩️",
+      color: "red"
+  },
+  {
+      number: "↩️",
+      color: "red"
+  },
+  {
+      number: "↩️",
+      color: "yellow"
+  },
+  {
+      number: "↩️",
+      color: "yellow"
+  },
+  {
+      number: "↩️",
+      color: "green"
+  },
+  {
+      number: "↩️",
+      color: "green"
+  },
+  {
+      number: "↩️",
+      color: "blue"
+  },
+  {
+      number: "↩️",
+      color: "blue"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  },
+  {
+      number: "🎨",
+      color: "black"
+  }
 ]
 )
