@@ -54,7 +54,8 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 70px;
-    margin: 0px 15px;
+    margin: 0px;
+    margin-left: 15px;
     color: white;
 }
 
