@@ -34,7 +34,6 @@ export default {
             return this.discardPile[0]
         },
         cardGraphic: function () {
-            console.log(this.showTopCard.number)
            if (this.showTopCard.number === "🚫") {
                 return false
             } else if (this.showTopCard.number === "↩️") {
