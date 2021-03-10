@@ -24,7 +24,7 @@ export default {
         },
 
         selectableCard: function() {
-            if (this.topCard.color === "black-wild" || this.card.color === this.topCard.color || this.card.number === this.topCard.number) {
+            if (this.topCard.color === "black-wild" || this.card.color === this.topCard.color || this.card.number === this.topCard.number || this.card.color === "black-wild") {
                 return true
             }
         }    
