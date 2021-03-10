@@ -1,5 +1,5 @@
 <template>
-    <li :class='card ? card.color: null' id='cards-held' v-on:click='selectedCard'>
+    <li :class="[card ? card.color: null, selectableCard() ? 'playable' : null]" id='cards-held' v-on:click='selectedCard'>
         <font-awesome-icon icon="ban" size="1x" v-if="card.number === '🚫'" />
         <font-awesome-icon icon="retweet" size="1x" v-if="card.number === '↩️'" />
         <font-awesome-icon icon="palette" size="1x" v-if="card.number === '🎨'" />
@@ -16,12 +16,18 @@ export default {
     props: ['card', 'topCard'],
     methods: {
         selectedCard: function() {
-            if (this.card.color === this.topCard.color || this.card.color === "black" || this.card.number === this.topCard.number) {
+            if (this.card.color === this.topCard.color || this.card.color === "black-wild" || this.card.number === this.topCard.number) {
             eventBus.$emit('selected-card', this.card)
-            } else if (this.topCard.color === "black") {
+            } else if (this.topCard.color === "black-wild") {
                 eventBus.$emit('selected-card', this.card)
             }
-        }
+        },
+
+        selectableCard: function() {
+            if (this.card.color === this.topCard.color || this.card.color === "black-wild" || this.card.number === this.topCard.number) {
+                return true
+            }
+        }    
     },
     computed: {
         cardGraphic: function () {
@@ -34,7 +40,7 @@ export default {
             } else {
                 return true
             }
-        }
+        },
     }
 }
 </script>
@@ -73,8 +79,12 @@ export default {
     color: black;
 }
 
-.black {
+.black-wild {
     background-color: black;
     color: white;
+}
+
+.playable {
+    margin-bottom: 40px;
 }
 </style>

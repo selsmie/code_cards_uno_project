@@ -24,6 +24,7 @@ export default {
 .player-hand-div {
   display: flex;
   justify-content: center;
+  align-items:center;
   widows: 70%;
 }
 .player-hand{

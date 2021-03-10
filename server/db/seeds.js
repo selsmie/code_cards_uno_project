@@ -316,19 +316,19 @@ db.cards.insertMany([
   },
   {
       number: "+4",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "+4",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "+4",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "+4",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "+2",
@@ -428,19 +428,19 @@ db.cards.insertMany([
   },
   {
       number: "🎨",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "🎨",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "🎨",
-      color: "black"
+      color: "black-wild"
   },
   {
       number: "🎨",
-      color: "black"
+      color: "black-wild"
   }
 ]
 )
