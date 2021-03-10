@@ -3,37 +3,18 @@
         <div class="pop-out-frame pop-out-grid">
             <h1>How To Play</h1>
                 <article id="how-to-play-instructions">
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula odio, mattis dignissim 
-                    imperdiet id, sagittis eget diam. Proin ipsum metus, maximus vel ante eu, auctor eleifend 
-                    lacus. Donec non efficitur enim. Duis rutrum id nisl sed scelerisque. Pellentesque 
-                    elementum tortor lacus, id eleifend leo dictum in. Aliquam nibh est, sagittis ut libero 
-                    tincidunt, placerat elementum sapien. Quisque turpis turpis, egestas sed maximus quis, 
-                    sagittis vestibulum elit.
-
-                    Suspendisse a urna id erat mollis volutpat quis id diam. Quisque id nisl vehicula, viverra 
-                    enim ut, iaculis magna. Quisque sed erat ex. Nullam malesuada dignissim pretium. Proin at augue 
-                    placerat, varius sem et, commodo libero. Sed sollicitudin sit amet justo sed lobortis. Cras ipsum 
-                    mauris, vulputate egestas ex in, tempor convallis dolor. Suspendisse sit amet tincidunt lacus. 
-                    Integer convallis odio vitae massa luctus lobortis. Nullam eget nunc eu mi aliquam rutrum eget 
-                    in nisl. Integer consequat arcu dictum leo porttitor ultrices. Maecenas molestie at ante interdum 
-                    varius.
-
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula odio, mattis dignissim 
-                    imperdiet id, sagittis eget diam. Proin ipsum metus, maximus vel ante eu, auctor eleifend 
-                    lacus. Donec non efficitur enim. Duis rutrum id nisl sed scelerisque. Pellentesque 
-                    elementum tortor lacus, id eleifend leo dictum in. Aliquam nibh est, sagittis ut libero 
-                    tincidunt, placerat elementum sapien. Quisque turpis turpis, egestas sed maximus quis, 
-                    sagittis vestibulum elit.
-
-                    Suspendisse a urna id erat mollis volutpat quis id diam. Quisque id nisl vehicula, viverra 
-                    enim ut, iaculis magna. Quisque sed erat ex. Nullam malesuada dignissim pretium. Proin at augue 
-                    placerat, varius sem et, commodo libero. Sed sollicitudin sit amet justo sed lobortis. Cras ipsum 
-                    mauris, vulputate egestas ex in, tempor convallis dolor. Suspendisse sit amet tincidunt lacus. 
-                    Integer convallis odio vitae massa luctus lobortis. Nullam eget nunc eu mi aliquam rutrum eget 
-                    in nisl. Integer consequat arcu dictum leo porttitor ultrices. Maecenas molestie at ante interdum 
-                    varius.
-                    </p>
+                    <p>To win the player must play all their cards and end with no cards on hand.</p>
+                    <p>The deck consists of 108 card, with numbers, colours and specials cards.</p>
+                    <p>Players are dealt 7 cards and upon their turn must play a card of matching colour or number to end their turn.</p>
+                    <p>Black special cards can be played on top of any other card.</p>
+                    <p>Should a player be unable to play a card, they must draw from the deck and their turn ends.</p>
+                    <p>Upon playing their second to last card, the player is declared ‘Uno’ to highlight their imminent victory.</p>
+                    <p>Special cards: -</p>
+                    <p>+2 - next player must draw 2 cards before taking their turn.</p>
+                    <p>+4 - next player must draw 4 cards before taking their turn.</p>
+                    <p><font-awesome-icon icon="ban" size="1x" /> - next player skips their turn.</p>
+                    <p><font-awesome-icon icon="palette" size="1x" /> - once placed, the current player can play a card of any colour.</p>
+                    <p><font-awesome-icon icon="retweet" size="1x" /> - the order of players is reversed.</p>
                 </article>
             <button class="button button-position" v-on:click.prevent="closePopOut">Close</button>
         </div>
@@ -69,7 +50,7 @@ export default {
     transform: translate(-50%, -50%);
     height: calc(100vh - 2rem);
     width: calc(100vw - 2rem);
-    background-color: rgba(220, 20, 60);
+    background-color: rgba(16 113 62);
     border: 5px solid rgba(41, 41, 41, 0.733);
     border-radius: .5rem;
     box-shadow: 7px 7px rgba(0, 0, 0, 0.356);
@@ -96,6 +77,7 @@ h1 {
 p {
     justify-self: center;
     color: white;
+    text-align: center;
 }
 
 .button-position {

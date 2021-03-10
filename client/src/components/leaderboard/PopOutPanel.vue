@@ -41,7 +41,7 @@ export default {
     transform: translate(-50%, -50%);
     height: calc(100vh - 2rem);
     width: calc(100vw - 2rem);
-    background-color: rgba(220, 20, 60);
+    background-color: rgba(16 113 62);
     border: 5px solid rgba(41, 41, 41, 0.733);
     border-radius: .5rem;
     box-shadow: 7px 7px rgba(0, 0, 0, 0.356);

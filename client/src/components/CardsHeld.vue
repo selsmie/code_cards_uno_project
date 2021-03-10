@@ -42,8 +42,8 @@ export default {
 <style>
 #cards-held {
     list-style: none;
-    height: 4rem;
-    width: 1rem;
+    height: 60px;
+    width: 13px;
     padding: 5px 13px;
     margin: 2px;
     border: 2px solid black;
