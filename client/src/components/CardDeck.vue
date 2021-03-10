@@ -63,13 +63,13 @@ export default {
 
 #top-card {
     height: 116px;
-    width: 60px;
+    width: 70px;
     border: 2px solid black;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 70px;
+    font-size: 3em;
     margin: 0px;
     margin-left: 15px;
     color: white;
@@ -100,7 +100,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 70px;
+    font-size: 3em;
     margin: 0px 15px;
     color: white;
     cursor: pointer;
