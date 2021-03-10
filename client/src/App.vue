@@ -1,10 +1,10 @@
 <template>
     <main id="main">
-            <header-main v-on:click="backHome"></header-main>
+            <header-main :status='gameInProgress'></header-main>
         <section>
             <button class="play-button" v-if="gameInProgress === null" v-on:click='setup'>Play</button>
             <player-form :players='players' v-if="gameInProgress === false"></player-form>
-            <game :players='players' :drawPile='drawPile' :discardPile='discardPile' :currentPlayer='currentPlayer' :winner='winner'></game>
+            <game v-if='gameInProgress' :players='players' :drawPile='drawPile' :discardPile='discardPile' :currentPlayer='currentPlayer' :winner='winner'></game>
         </section>
     </main>
 </template>
@@ -107,6 +107,10 @@ export default {
                 }
             })
             this.discardPile.splice(1, this.discardPile.length)
+        })
+
+        eventBus.$on('quit-game', () => {
+            this.backHome()
         })
     },
 

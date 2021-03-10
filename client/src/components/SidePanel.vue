@@ -5,6 +5,7 @@
             <div class="side-panel-menu" v-if="isSidePanelOpen">
                 <a class="close-button" v-on:click="closeSidePanel">X</a>
                 <ul class="menu-list">
+                    <li class='menu-item' id='exit' v-on:click='quitGame' v-if='status === true'>Quit Game</li>
                     <li class="menu-item"><button v-on:click.prevent="openHowToPlay">HOW TO PLAY</button></li>
                     <li class="menu-item"><button v-on:click.prevent="openLeaderboard">LEADERBOARD</button></li>
                 </ul>
@@ -22,9 +23,12 @@ import { navOpen, navToggle } from "@/store.js"
 import { howToPlay, howToPlayToggle, } from "@/store.js"
 import { leaderboardMenu, leaderboardToggle, } from "@/store.js"
 
+import { eventBus } from '../main.js'
+
 
 export default {
     name: "side-panel",
+    props: ['status'],
     components: {
         "how-to-play": HowToPlay,
         "leaderboard": Leaderboard,
@@ -37,6 +41,9 @@ export default {
         openLeaderboard() {
             leaderboardToggle.toggleLeaderboard()
         },
+        quitGame: function() {
+            eventBus.$emit('quit-game')
+        }
     },
     computed: {
         isSidePanelOpen() {
@@ -117,4 +124,22 @@ button {
 	cursor: pointer;
 	outline: inherit;
 }
+
+#exit {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 auto;
+    border: 2px solid white;
+    border-radius: 12px;
+    padding: 0px;
+    width: 120px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#exit:hover {
+    color: rgb(255, 102, 0);
+    border: 2px solid rgb(255, 102, 0);
+}
+
 </style>>

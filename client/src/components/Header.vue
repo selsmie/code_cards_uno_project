@@ -8,7 +8,7 @@
         </div>
 
         <div>
-            <side-panel></side-panel>
+            <side-panel :status='status'></side-panel>
         </div>
     </header>
 </template>
@@ -19,6 +19,7 @@ import { navOpen, navToggle } from "@/store.js"
 
 export default {
   name: "header-component",
+  props: ['status'],
   components: {
     "side-panel": SidePanel,
   },
