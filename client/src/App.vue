@@ -25,7 +25,6 @@ export default {
             drawPile: [],
             discardPile: [],
             currentPlayer:  null,
-            selectedCard: null,
             winner: false,
         }
     },
@@ -53,7 +52,6 @@ export default {
             this.getCardsAndLeaders()
             this.discardPile = []
             this.currentPlayer = null
-            this.selectedCard = null
         })
 
         eventBus.$on('new-player', (name) => {
@@ -83,11 +81,9 @@ export default {
         })
 
         eventBus.$on('selected-card', (card) => {
-            this.selectedCard = card
-            const index = this.currentPlayer.hand.indexOf(this.selectedCard)
+            const index = this.currentPlayer.hand.indexOf(card)
             this.currentPlayer.hand.splice(index, 1)
-            this.discardPile.unshift(this.selectedCard)
-            this.selectedCard = null
+            this.discardPile.unshift(card)
             if (this.discardPile[0].number === "🎨") {
                 return
             } else {
@@ -237,6 +233,7 @@ body {
     background-size: 250px;
     background-repeat: repeat;
     color: white;
+    font-family: 'Roboto',sans-serif;
 }
 
 #main {
