@@ -63,7 +63,7 @@ export default {
 
 #top-card {
     height: 116px;
-    width: 70px;
+    width: 60px;
     border: 2px solid black;
     border-radius: 8px;
     display: flex;
