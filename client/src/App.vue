@@ -232,8 +232,8 @@ export default {
 <style>
 body {
     margin: 0;
-    background-color: #700c0c;
-    /* background-color: #31700c; */
+    /* background-color: #700c0c; */
+    background-color: #31700c;
     background-image: url("./assets/felt-background.png");
     background-size: 250px;
     background-repeat: repeat;
