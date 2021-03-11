@@ -12,7 +12,7 @@
             <a  class="fa" href="https://www.linkedin.com/in/mark-burns-6348241b9/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
             <a  class="fa" href="https://github.com/MarkTheSharky" target="_blank"><font-awesome-icon class="fa" :icon="['fab', 'github-square']"/></a>
         <p id="simon">Simon Elsmie</p>
-            <a  class="fa" href="" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
+            <a  class="fa" href="https://www.linkedin.com/in/simonelsmie/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
             <a  class="fa" href="https://github.com/selsmie" target="_blank"><font-awesome-icon class="fa" :icon="['fab', 'github-square']"/></a>
     </div>
 </template>
