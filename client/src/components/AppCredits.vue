@@ -3,7 +3,7 @@
         <h4 id="project-git">Project Github</h4><p></p><a  class="fa" href="https://github.com/rabisse/code_cards_uno_project" target="_blank"><font-awesome-icon class="fa-project-git" :icon="['fab', 'github-square']"/></a>
         <h5 id="created">Created By:</h5><p></p><p></p>
         <p id="alex">Alex Rabisse</p>
-            <a  class="fa" href="" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
+            <a  class="fa" href="https://www.linkedin.com/in/alex-rabisse-51848624/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
             <a  class="fa" href="https://github.com/rabisse" target="_blank"><font-awesome-icon :icon="['fab', 'github-square']"/></a>
         <p id="jenny">Jenny Bulford</p>
             <a  class="fa" href="https://www.linkedin.com/in/jenny-bulford-0b0038b0/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
