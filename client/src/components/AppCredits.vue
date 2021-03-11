@@ -6,7 +6,7 @@
             <a  class="fa" href="" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
             <a  class="fa" href="https://github.com/rabisse" target="_blank"><font-awesome-icon :icon="['fab', 'github-square']"/></a>
         <p id="jenny">Jenny Bulford</p>
-            <a  class="fa" href="" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
+            <a  class="fa" href="https://www.linkedin.com/in/jenny-bulford-0b0038b0/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
             <a  class="fa" href="https://github.com/Jennycbx" target="_blank"><font-awesome-icon class="fa" :icon="['fab', 'github-square']"/></a>
         <p id="mark">Mark Burns</p>
             <a  class="fa" href="https://www.linkedin.com/in/mark-burns-6348241b9/" target="_blank"><font-awesome-icon :icon="['fab', 'linkedin']"/></a>
