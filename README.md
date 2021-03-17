@@ -1,4 +1,4 @@
-# Creating Uno Stack-App_O
+# Creating Uno Stack-App-O
 
 # Refer to the README.md files in the server and client folders for setup.
 
